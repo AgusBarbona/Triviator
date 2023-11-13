@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    background-color: #C5F4A8;
+}
+
+header h1{
+    background-color: #BC7AF9;
+    color: aliceblue;
+    display: block;
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+}
+
+.form{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 30px;
+}
+
+div img{
+    width: 200px;
+    height: 200px;
+}
+
+input{
+    background-color: aliceblue;
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    border: 0;
+}
+
+button{
+    background-color: #76269B;
+    color: aliceblue;
+    border-radius: 10px;
+    border: 0;
+    width: 90px;
+    height: 40px;
+}
