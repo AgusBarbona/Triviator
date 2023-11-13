@@ -1,13 +1,13 @@
 
 .App {
-  display: flex;
+  display:inline-flex;
   margin-left: 5%;
 }
 
   .timer-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 1%;
+    margin-top: 6%;
     margin-bottom: 3%;
   }
   
