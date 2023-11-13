@@ -1,16 +1,16 @@
-const mysql = require('mysql2/promise');
-const dbConfig = require('./config/db.config.ts');
+import * as mysql from 'mysql2/promise';
+import dbConfig from '../config/db.config';
 
-const connection = mysql.createConnection({
-    host: dbConfig.HOST,
-    user: dbConfig.USER,
-    password: dbConfig.PASSWORD,
-    database: dbConfig.DB
+// Crear un pool de conexiones
+const pool = mysql.createPool({
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB,
+  waitForConnections: true,
+  connectionLimit: 10, // Puedes ajustar el límite según tus necesidades
+  queueLimit: 0
 });
 
-connection.connect((error: any) => {
-    if (error) throw error;
-    console.log('Successfully connected to the database');
-});
-
-module.exports = connection;
+// Exportar el pool
+export default pool;

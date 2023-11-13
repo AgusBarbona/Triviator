@@ -1,6 +1,8 @@
-module.exports = {
+const dbConfig = {
     HOST: 'localhost',
     USER: 'root',
-    PASSWORD: '',
+    PASSWORD: '290160',
     DB:'triviator'
 };
+
+export default dbConfig;
