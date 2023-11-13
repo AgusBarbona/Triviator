@@ -9,4 +9,4 @@ router.post("/", (req: Request, res: Response) => {
   create(req, res);
 });
 
-export default router;
+

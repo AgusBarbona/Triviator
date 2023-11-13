@@ -31,4 +31,4 @@ const createUsuario = (newUsuario: Usuario, result: (err: Error | null, res: any
     });
 };
 
-export default Usuario
+export default createUsuario;
