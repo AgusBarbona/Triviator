@@ -68,6 +68,7 @@ const Temporizador : React.FC = () => {
           {RenderTime}
         </CountdownCircleTimer>
       </div>
+      
     </div>
   );
 };
