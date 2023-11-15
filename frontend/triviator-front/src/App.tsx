@@ -38,6 +38,8 @@ export default App
 import { BrowserRouter, Route, Routes} from 'react-router-dom'; 
 import WinnerPage from './pages/Winnerpage'; 
 import LoserPage from './pages/Loserpage';
+import LoginPage from './pages/LoginPage';
+
 
 
 
@@ -48,10 +50,10 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-       
+        <Route path="/login/" element={<LoginPage/>}/>
         <Route path="/winner/" element={< WinnerPage/>}/>
         <Route path="/loser/" element={<LoserPage/>}/>
-        
+
       </Routes>
     </BrowserRouter> 
     </> 
