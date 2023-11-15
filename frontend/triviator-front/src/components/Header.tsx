@@ -2,7 +2,7 @@ import '../styles/header.scss';
 
 const Header = () => {
   return (
-    <header className="custom-header">
+    <header className="site-header">
       Triviator
     </header>
   );
