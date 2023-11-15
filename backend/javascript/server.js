@@ -15,13 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const db_1 = __importDefault(require("./app/models/db"));
-const port = 3000;
-app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const port = parseInt(process.env.PORT || '3000', 10);
+app.get("/", (req, res) => {
+    res.send("Hello home server!");
+});
+// Nueva ruta /api
+app.get("/api", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Obtener una conexión del pool
         const connection = yield db_1.default.getConnection();
-        // Realiza operaciones en la base de datos según sea necesario
-        res.send('Connected to the database. Hello World!');
+        // Realizar operaciones en la base de datos según sea necesario
+        res.json({ message: "Hello server!" });
         // Liberar la conexión de vuelta al pool
         connection.release();
     }
@@ -29,6 +33,10 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ error: 'Error al conectar a la base de datos', details: error.message });
     }
 }));
+// Nueva ruta /api/v1
+app.get("/api/v1", (req, res) => {
+    res.json({ message: "Hola desde boton" });
+});
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });

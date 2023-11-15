@@ -2,15 +2,21 @@ import express, { Request, Response } from 'express';
 const app = express();
 import pool from './app/models/db';
 
-const port: number = 3000;
+const port: number = parseInt (process.env.PORT || '3000', 10);
 
-app.get('/', async (req: Request, res: Response) => {
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello home server!");
+});
+
+// Nueva ruta /api
+app.get("/api", async (req: Request, res: Response) => {
   try {
     // Obtener una conexión del pool
     const connection = await pool.getConnection();
     
-    // Realiza operaciones en la base de datos según sea necesario
-    res.send('Connected to the database. Hello World!');
+    // Realizar operaciones en la base de datos según sea necesario
+    res.json({ message: "Hello server!" });
     
     // Liberar la conexión de vuelta al pool
     connection.release();
@@ -19,7 +25,11 @@ app.get('/', async (req: Request, res: Response) => {
   }
 });
 
+// Nueva ruta /api/v1
+app.get("/api/v1", (req: Request, res: Response) => {
+  res.json({ message: "Hola desde boton" });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
-

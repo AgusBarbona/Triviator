@@ -40,15 +40,32 @@ import WinnerPage from './pages/Winnerpage';
 import LoserPage from './pages/Loserpage';
 import LoginPage from './pages/LoginPage';
 import PaginaJuego from './pages/PaginaJuego';
+import { useState } from 'react';
 
 
 
 
 function App() {
-  
+    const url = "/api";
+    const [datav1, setDatav1] = useState<string | null>(null)
 
+    function getDataFromServer() {
+      fetch(url+"/v1")
+       .then(response => response.json() )
+       .then((data: {message: string}) => {
+         console.log(data);
+         setDatav1(data.message);
+       })
+       .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+    }
   return (
     <>
+    <p> { datav1 } </p>
+    <button onClick={ getDataFromServer }>
+      obtener mensaje del server
+    </button>
     <BrowserRouter>
       <Routes>
         <Route path="/login/" element={<LoginPage/>}/>
