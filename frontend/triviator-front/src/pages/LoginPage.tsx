@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import '..\styles\loginPage.css';
+import '../styles/loginPage.css';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');

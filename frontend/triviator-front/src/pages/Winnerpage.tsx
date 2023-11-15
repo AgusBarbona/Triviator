@@ -5,8 +5,8 @@
 */
 
 
-import Header from '../components/Header';
-import Buttons from '../components/buttons';
+import Header from '../components/header/Header';
+import Buttons from '../components/Buttons';
 import '../styles/winner.scss'; 
 
 const WinnerPage = () => {

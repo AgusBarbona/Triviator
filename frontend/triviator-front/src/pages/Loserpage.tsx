@@ -4,7 +4,7 @@ cuadrado: #F37474
 font-family: 'Merriweather Sans', sans-serif;
 */  
 
-import Header from '../components/Header';
+import Header from '../components/header/header';
 import Buttons from '../components/buttons';
 import '../styles/loser.scss'; 
 
