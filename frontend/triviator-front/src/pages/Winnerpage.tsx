@@ -5,7 +5,7 @@
 */
 
 
-import Header from '../components/Header';
+import Header from '../components/header/header';
 import Buttons from '../components/buttons';
 import '../styles/winner.scss'; 
 
