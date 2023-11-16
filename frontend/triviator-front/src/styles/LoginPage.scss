@@ -1,0 +1,86 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f7f6;
+  font-family: 'Arial', sans-serif;
+
+  .login-container {
+    display: flex;
+    width: 50%; // Ajustado a la mitad del ancho de la vista
+    min-height: 70vh; // Altura mínima ajustada para dar espacio alrededor del contenedor
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    align-items: stretch; // Estirar los elementos hijos para que llenen el contenedor
+
+    .login-side {
+      background: #7a57d1; // Color ajustado al de la imagen
+      flex-basis: 50%; // Ajustado para que el banner y el formulario tengan el mismo tamaño
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem;
+
+      h2 {
+        font-size: 2rem; // Tamaño de fuente aumentado para el título
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem; // Tamaño de fuente aumentado para el subtítulo
+      }
+    }
+
+    .login-form {
+      flex-basis: 50%; // Ajustado para que el banner y el formulario tengan el mismo tamaño
+      background-color: #fff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .form-group {
+        margin-bottom: 1rem;
+
+        label {
+          font-size: 1rem; // Tamaño de fuente ajustado para las etiquetas
+          color: #333;
+        }
+
+        input {
+          padding: 0.75rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1rem;
+          margin-bottom: 0.5rem; // Agregar espacio debajo de cada input
+        }
+      }
+
+      .error-message {
+        color: #ff3860;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .login-button {
+        background-color: #7a57d1; // Color del botón ajustado al del banner
+        color: #fff;
+        padding: 1rem;
+        border-radius: 20px;
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+
+      .basic-version {
+        color: #7a57d1;
+        font-size: 0.8rem;
+        text-align: center; // Centrar el enlace de la versión básica
+        margin-top: 1rem;
+      }
+    }
+  }
+}

@@ -31,6 +31,10 @@ function App() {
     </>
   )
 }
+    <p> { datav1 } </p>
+    <button onClick={ getDataFromServer }>
+      obtener mensaje del server
+    </button>
 
 export default App
 */
@@ -51,21 +55,18 @@ function App() {
 
     function getDataFromServer() {
       fetch(url+"/v1")
-       .then(response => response.json() )
-       .then((data: {message: string}) => {
-         console.log(data);
-         setDatav1(data.message);
-       })
-       .catch((error) => {
+      .then(response => response.json() )
+      .then((data: {message: string}) => {
+        console.log(data);
+        setDatav1(data.message);
+      })
+      .catch((error) => {
         console.error('Error fetching data:', error);
       });
     }
   return (
     <>
-    <p> { datav1 } </p>
-    <button onClick={ getDataFromServer }>
-      obtener mensaje del server
-    </button>
+
     <BrowserRouter>
       <Routes>
         <Route path="/login/" element={<LoginPage/>}/>
