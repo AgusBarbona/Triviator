@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import '../styles/LoginPage.scss';
 
+
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,23 +26,24 @@ const Login: React.FC = () => {
       setError('Usuario o contraseña incorrectos.');
     }
   };
-
   return (
     <div className="login-page">
-      <div className="login-container">
-        <div className="login-side">
-          <div className="brand-title">Triviator</div>
-          <div className="welcome-message">
-            Bienvenido Jugador Cinefilo
-          </div>
+    <div className="login-container">
+      <div className="login-side">
+      <h1 className="brand-title">Triviator</h1>
+      <p className="welcome-message">Bienvenido Cinéfilo</p>
+        <img src="../../public/recursos/png.png" alt="Popcorn Character" className="popcorn-image" />
+      </div>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="welcome-title-container">
+          <p className='para-jugar'>Inicia Sesión para empezar a jugar</p>
         </div>
-        <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="username">Usuario:</label>
             <input
               type="text"
               id="username"
-              placeholder="Ingrese su Email"
+              placeholder="Ingrese su Email de usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -57,7 +59,9 @@ const Login: React.FC = () => {
             />
           </div>
           {error && <div className="error-message">{error}</div>}
-          <button type="submit" className="login-button">Iniciar Sesión</button>
+          <button type="submit" className="login-button">
+            Iniciar Sesión
+          </button>
         </form>
       </div>
     </div>
@@ -65,3 +69,4 @@ const Login: React.FC = () => {
 };
 
 export default Login;
+
