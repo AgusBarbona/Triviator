@@ -1,111 +1,118 @@
+$color-background: #9CD9E7;
+$color-primary: #BC7AF9;
+$color-secondary: #76269B;
+$color-white: #fff;
+$color-error: #ff3860;
+$color-hover-primary: #7a57d1; // Ajusta este color según tu preferencia
+
+$font-size-large: 3rem;
+$font-size-medium: 1.4rem;
+$font-size-small: 1rem;
+$border-radius: 20px;
+$box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #9CD9E7; 
-  .login-container {
+  background-color: $color-background;
+}
+
+.login-container {
+  display: flex;
+  width: 50%;
+  min-height: 70vh;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  .login-side {
+    background: linear-gradient(to bottom, $color-primary, $color-secondary);
+    flex: 0 0 250px;
     display: flex;
-    width: 50%; 
-    min-height: 70vh; 
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 20px;
-    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: $color-white;
 
-    .login-side {
-      background: linear-gradient(to bottom, #BC7AF9, #76269B); 
-      flex: 0 0 250px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      color: white;
+    .popcorn-image {
+      width: 350px;
+      height: 350px;
+      align-self: flex-start; 
+      margin: -1rem -1rem -5rem -5rem; 
+      padding: 5rem 2rem 0rem 0rem;
+    }
 
-      .popcorn-image {
-        width: 350px;
-        height: 350px;
-        align-self: flex-start; 
-        margin: -1rem -1rem -5rem -5rem; 
-        padding: 5rem 2rem 0rem 0rem;
-      }
-
-      .brand-title {
-        margin-bottom: 1rem;
-        font-size: 3rem;
-        text-align: center;
-        font-weight: 800; 
-        text-shadow: 2px 2px 4px rgba(118, 38, 155, 0.5);
-      }
-      
-      .welcome-message {
-        font-size: 24px; 
-        font-weight: bold; 
-        font-style: italic; 
+    .brand-title {
+      margin-bottom: 1rem;
+      font-size: $font-size-large;
+      text-align: center;
+      font-weight: 800; 
+      text-shadow: 2px 2px 4px rgba(118, 38, 155, 0.5);
     }
     
+    .welcome-message {
+      font-size: $font-size-medium; 
+      font-weight: bold; 
+      font-style: italic; 
+    }
+  }
 
-      .welcome-title-container {
-        font-size: 3rem;
-        padding: 2rem; 
-        text-align: center;
+  .login-form {
+    flex: 1; 
+    background-color: $color-white; 
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .para-jugar {
+      font-weight: bold; 
+      font-size: $font-size-medium;
+      margin-bottom: 50px; 
+      color: $color-secondary;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      label {
+        font-size: $font-size-medium;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        padding: 0.8rem;
+        border: 2px solid #ccc;
+        border-radius: $border-radius;
+        font-size: $font-size-small;
       }
     }
 
-    .login-form {
-      flex: 1; 
-      background-color: #fff; 
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .login-button {
+      background-color: $color-secondary;
+      color: $color-white;
+      padding: 1rem;
+      border-radius: $border-radius;
+      font-size: $font-size-medium;
+      margin-top: 2rem;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
 
-      .para-jugar{
-        font-weight: bold; 
-        font-size: 23px;
-        margin-bottom: 50px; 
-        color: #76269B;
-        }
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 1rem;
-
-        label {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
-        }
-
-        input {
-          padding: 0.8rem;
-          border: 2px solid #ccc;
-          border-radius: 5px;
-          font-size: 1rem;
-        }
+      &:hover {
+        background-color: darken($color-hover-primary, 10%);
       }
+    }
 
-      .login-button {
-        background-color: #76269B;
-        color: white;
-        padding: 1rem;
-        border-radius: 20px;
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        cursor: pointer;
-        border: none;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: darken(#7a57d1, 10%);
-        }
-      }
-
-      .error-message {
-        color: #ff3860;
-        margin-bottom: 1rem;
-        font-size: 0.85rem;
-      }
+    .error-message {
+      color: $color-error;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
     }
   }
 }
