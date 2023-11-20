@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     <div className="login-container">
       <div className="login-side">
       <h1 className="brand-title">Triviator</h1>
-      <p className="welcome-message">Bienvenido Cinéfilo</p>
+      <p className="welcome-message">Bienvenid@ Cinéfilo</p>
         <img src="../../public/recursos/png.png" alt="Popcorn Character" className="popcorn-image" />
       </div>
       <form className="login-form" onSubmit={handleSubmit}>

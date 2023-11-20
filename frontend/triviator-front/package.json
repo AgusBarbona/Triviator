@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.2",
     "@types/react-countdown-circle-timer": "^2.0.1",
     "react": "^18.2.0",
     "react-countdown-circle-timer": "^3.2.1",
@@ -26,7 +28,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "typescript": "^5.0.2",
+    "typescript": "^5.3.2",
     "vite": "^4.4.5"
   }
 }

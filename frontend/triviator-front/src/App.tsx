@@ -43,6 +43,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import WinnerPage from './pages/Winnerpage'; 
 import LoserPage from './pages/Loserpage';
 import LoginPage from './pages/LoginPage';
+import Avatar from './pages/Avatar';
 import PaginaJuego from './pages/PaginaJuego';
 import { useState } from 'react';
 
@@ -70,6 +71,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
+        <Route path="/avatar/" element={< Avatar/>}/>
         <Route path="/winner/" element={< WinnerPage/>}/>
         <Route path="/loser/" element={<LoserPage/>}/>
         <Route path="/PaginaJuego/" element={<PaginaJuego/>}/>

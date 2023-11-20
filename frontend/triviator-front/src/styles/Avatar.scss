@@ -1,0 +1,96 @@
+.avatar-header {
+    background-color: #BC7AF9; // Dark green background as seen in the header of the image
+    color: #FFFFFF; 
+    font-weight: bold;// White text color
+    font-size: 2.5em; // Large font size for the header text
+    padding: 20px 0; // Padding above and below the header text
+    width: 100%; // Header spans the full width
+    text-align: center;
+    position: fixed; // Fixed at the top
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; // Above the other content
+}
+
+.avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #C5F4A8; // Light green background color as seen in the image
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    min-height: 100vh; // Minimum height of the viewport
+    width: 100%; // Ensures the wrapper takes the full width
+    padding-top: 60px; // Space for the fixed header
+    box-sizing: border-box; // Ensures padding is included in the height calculation
+}
+
+
+.avatar-subtitle {
+    color: #000000; 
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 80px; 
+    text-align: center;
+}
+.avatar-content {
+    border-radius: 10px; // Rounded corners as seen in the image
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px; // Padding inside the content box
+    margin-top: 20px; // Additional space from the subtitle
+    width: 80%; // Occupying 80% of the wrapper width
+    max-width: 500px; // Maximum width
+    box-sizing: border-box;
+}
+
+.avatar-name-input {
+    width: 100%; // Full width of the content area
+    position: relative;
+    margin-bottom: 20px; // Space below the input area
+input {
+    color: #76269B;
+    font-weight: bold;
+    width: 100%; // Full width of the name input area
+    padding: 10px 0px 10px 10px; // Padding inside the input
+    border: 2px solid #FFFFFF; // White border as seen in the image
+    border-radius: 5px; // Slightly rounded corners of the input
+    font-size: 1.2rem; // Font size of the input text
+    &:focus {
+    outline: none; // Removing the outline on focus
+    }
+}
+
+.character-count {
+    position: absolute;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    right: 10px;
+    bottom: 9px;
+    background-color: #7CB342; // Dark green background as seen in the image
+    color: #FFFFFF; // White text color
+    padding: 5px; // Padding inside the character count
+    border-radius: 5px; // Rounded corners as seen in the image
+    }
+}
+.popcorn-image{
+    width: 350px;
+    height: 350px;
+    margin: 6rem 49rem -35rem 2rem; 
+    padding:5rem 2rem 1rem 0rem;
+}
+
+.ready-button {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #76269B; // Dark green background as seen on the button in the image
+    color: #FFFFFF; // White text color
+    border: none; // No border
+    border-radius: 5px; // Rounded corners as seen in the image
+    padding: 10px 20px; // Padding inside the button
+    font-size: 1.5rem; // Font size of the button text
+    cursor: pointer; // Cursor changes to pointer to indicate it's clickable
+    &:hover {
+    background-color: darken(#689F38, 10%); // Darkens the button on hover
+    }
+}
