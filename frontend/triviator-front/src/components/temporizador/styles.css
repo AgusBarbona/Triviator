@@ -1,14 +1,9 @@
-
-.App {
-  display:inline-flex;
-  margin-left: 5%;
-}
-
   .timer-wrapper {
+    background-color: #9CD9E7;
     display: flex;
-    justify-content: center;
-    margin-top: 6%;
-    margin-bottom: 3%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 1%;
   }
   
   .time-wrapper {
