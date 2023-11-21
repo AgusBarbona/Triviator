@@ -1,5 +1,5 @@
 import React from 'react'
-import Temporizador from '../components/temporizador/Temporizador.tsx'
+import Temporizador from '../components/temporizador/temporizador.tsx'
 import { Juego } from '../components/juego/Juego.tsx'
 
 

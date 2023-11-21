@@ -1,4 +1,4 @@
-import '../header/Header'
+import '../../styles/header.scss'
 
 
 const Header = () => {

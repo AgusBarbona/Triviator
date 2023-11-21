@@ -4,23 +4,24 @@
  font-family: 'Merriweather Sans', sans-serif;
 */
 
-
 import Header from '../components/header/Header';
-import Buttons from '../components/Buttons';
-import '../styles/winner.scss'; 
+import Buttons from '../components/buttons/buttons';
+import '../styles/winner.scss';
 
-const WinnerPage = () => {
-  return (
-    <div>
-      <Header />
-      <div className="winner-container">
-      <div className="winner-rectangle">
-        <div className="text">FELICITACIONES GANASTE!!! 😊</div>
-        <Buttons />
-      </div>
-    </div>
-    </div>
-  );
+const  WinnerPage = () => {
+      return (
+        <div>
+         <Header />
+          <div className="winner-container">
+          <div className="winner-rectangle">
+            <div className="text"> FELICITACIONES, ¡GANASTE! 😊</div>
+            <img src="../../public/recursos/emocionado-removebg-preview.png" alt="Popcorn Character" className="happy-popcorn" />
+            <Buttons />
+          </div>
+        </div>
+        </div>
+      );
 }
-
 export default WinnerPage;
+  
+  

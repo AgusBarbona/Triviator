@@ -1,36 +1,58 @@
 @import './var';
 
-.buttons-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+.buttons-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: space-between;
+ 
+}
+
 .button {
-    padding: 8px;
-    margin: 15px 0;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    width: 250px; 
-    height: 45px; 
-    font-size: 20px;
-    font-family: 'Merriweather Sans', sans-serif;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold; 
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  font-size: 22px;
+  font-family: 'Merriweather Sans', sans-serif;
+  transition: background-color 0.3s ease;
 }
-  
+
 .button-1 {
-    background-color: $button-1-color;
-    color: white;
+  background-color: $button-1-color;
+  color: white;
+  padding: 8px 45px;
 }
-  
+
 .button-2 {
-    background-color: $button-2-color;
-    color: white;
+  background-color: $button-2-color;
+  color: white;
+  padding: 8px 50px;
 }
+
+@media screen and (min-width: 768px) {
   
-.button-3 {
-    background-color: $button-3-color;
-    color: white;
+  .buttons-container {
+    flex-direction: row; 
+  }
+
+  .button {
+    width: auto; 
+  }
+
+  .button-1{
+    align-self: flex-start;
+    margin-right: 2%;
+    margin-left: 2%;
+  }
+
+  .button-2 {
+    align-self: flex-end;
+    margin-right: 2%;
+    
+  }
 }
