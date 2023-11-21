@@ -3,14 +3,16 @@
 .Categoria {
     background-color: #C5F4A8;
     max-width: 100%;
-   
+
 }
 
-.ruleta-container{
+
+.ruleta-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%; 
+    min-height: 100vh;
     max-width: 1400px;
-   
 }

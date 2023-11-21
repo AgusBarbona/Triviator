@@ -35,10 +35,9 @@ export const Ruleta = () => {
         textColors={["white"]}
         radiusLineWidth = {2}
         outerBorderWidth = {2}
-        offsetX = {0}
-        offsetY = {0}
-       
-       
+
+
+
 
         onStopSpinning={() => {
           setMustSpin(false);
