@@ -45,6 +45,8 @@ import LoserPage from './pages/Loserpage';
 import LoginPage from './pages/LoginPage';
 import Avatar from './pages/Avatar';
 import PaginaJuego from './pages/PaginaJuego';
+import {Ruleta} from './components/ruleta/ruleta';
+import  {RuletaCategoria}  from './pages/RuletaCategoria';
 import { useState } from 'react';
 
 
@@ -75,6 +77,8 @@ function App() {
         <Route path="/winner/" element={< WinnerPage/>}/>
         <Route path="/loser/" element={<LoserPage/>}/>
         <Route path="/PaginaJuego/" element={<PaginaJuego/>}/>
+        <Route path="/ruleta" element={<Ruleta/>}/>
+        <Route path='/RuletaCategoria' element={<RuletaCategoria/>}/>
 
       </Routes>
     </BrowserRouter> 
