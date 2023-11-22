@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.scss';
 
 
@@ -7,7 +8,45 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const validUsername = 'usuario_correcto';
+  const navigate = useNavigate();
+
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (!username || !password) {
+      setError('Por favor ingrese un usaurio y contraseña válidos.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (response.ok) {
+        console.log('Autenticación exitosa');
+        setError('');
+
+        // redirigir al usaurio a la página principal
+        navigate('/RuletaCategoria');
+        console.log('Redirigido a RuletaCategotia');
+
+      } else {
+        const data = await response.json();
+        setError(data.mensaje);
+      }
+    } catch (error) {
+      console.error('Error al autenticar usuario:', error);
+      setError('Error al comunicarse con el servidor');
+      console.error('Error al redirigir:', error);
+    }
+  };
+  /*const validUsername = 'usuario_correcto';
   const validPassword = 'contraseña_segura';
 
   const handleSubmit = (event: FormEvent) => {
@@ -25,7 +64,7 @@ const Login: React.FC = () => {
     } else {
       setError('Usuario o contraseña incorrectos.');
     }
-  };
+  };*/
   return (
     <div className="login-page">
     <div className="login-container">
