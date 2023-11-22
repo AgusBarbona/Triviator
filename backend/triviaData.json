@@ -1,0 +1,219 @@
+[
+    {
+      "category": "Disney",
+      "questions": [
+        {
+          "question": "En la película de Disney 'El Rey León', ¿qué personaje es conocido como el consejero real del rey Mufasa y el futuro rey Simba?",
+          "options": ["Timón", "Scar", "Rafiki", "Simba"],
+          "correctAnswer": "Rafiki"
+        },
+        {
+            "question": "¿Qué personaje ayuda a Aladdín a entrar en la Cueva de las Maravillas?",
+          "options": ["Abu", "Jasmine", "El Genio", "Iago"],
+          "correctAnswer": "Abu"
+        },
+        {
+            "question": "En la película de Disney “La Bella y la Bestia: ”¿Cómo se llama el objeto encantado que representa a Lumière en su forma humana?",
+          "options": ["Candelabro", "Reloj", "Tetera", "Piano"],
+          "correctAnswer": "Candelabro"
+        },
+        {
+            "question": "¿Cuál es el nombre de la sirenita?",
+          "options": ["Ariel", "Bella", "Aurora", "Jasmine"],
+          "correctAnswer": "Ariel"
+        },
+        {
+            "question": " ¿Cuál es el nombre de la madrastra de Blancanieves?",
+          "options": ["Maléfica", "Úrsula", "Reina Grimhilde", "Reina de Corazones"],
+          "correctAnswer": "Reina Grimhilde"
+        },
+        {
+            "question": "¿Cómo se llama el hada madrina de Cenicienta?",
+          "options": ["Flora", "Fauna", "Merryweather", "Campanita"],
+          "correctAnswer": "Flora"
+        },
+        {
+            "question": "¿Qué personaje se hace pasar por un hombre para unirse al ejército en lugar de su padre?",
+          "options": ["Mushu", "Mulán", "Shang", "Yao"],
+          "correctAnswer": "Mulán"
+        },
+        {
+            "question": "¿Cuál es el nombre del hombre inglés con el que Pocahontas se enamora?",
+          "options": ["Thomas", "John Smith", "John Rolfe", "John Ratcliffe"],
+          "correctAnswer": "John Smith"
+        },
+        {
+            "question": "¿Quién es el capitán del barco pirata en 'Peter Pan'?",
+          "options": ["Capitán Garfio", "Smee", "Sr. Smee", "Tinker Bell"],
+          "correctAnswer": "Capitán Garfio"
+        },
+        {
+            "question": "En la película de Disney “El Libro de la Selva ”¿Cómo se llama el oso que ayuda a Mowgli a sobrevivir en la selva?",
+          "options": ["Baloo", "Bagheera", "Shere Khan", "Kaa"],
+          "correctAnswer": "Baloo"
+        },
+        {
+            "question": "",
+          "options": ["", "", "", ""],
+          "correctAnswer": ""
+        }
+      ]
+    },
+    {
+      "category": "Caricaturas",
+      "questions": [
+        {
+          "question": "¿En qué serie un  niño llamado Finn y su perro Jake exploran el mundo de Ooo?",
+          "options": ["Ben 10", "El Increíble Mundo de Gumball", "Hora de Aventura", "Steven Universe"],
+          "correctAnswer": "Hora de Aventura"
+        },
+        {
+            "question": "¿En qué serie el personaje principal vive en una piña debajo del mar?",
+          "options": ["Calamardo Tentáculos", "Bon Esponja", "Arenita Mejillas", "Patricio Estrella"],
+          "correctAnswer": "Bob Esponja"
+        },
+        {
+            "question": "En 'Ben 10', ¿cuál es el dispositivo que le permite a Ben Tennyson transformarse en diferentes alienígenas?",
+          "options": ["Super Reloj", "Omnitrix", "Extraterminal", "Alienator"],
+          "correctAnswer": "Omnitrix"
+        },
+        {
+            "question": "¿Cuál es la serie animada que se centra alrededor de dos hermanos que viajan a través de un extraño bosque con el fin de encontrar su camino a casa?",
+          "options": ["Gravity Falls", "El Mundo de Greg", "Un Shoe Mas", "Más allá del Jardín"],
+          "correctAnswer": "Más allá del Jardín"
+        },
+        {
+            "question": "En 'Las Tortugas Ninja', ¿cuál es el nombre del maestro sensei de las tortugas?",
+          "options": ["Donatello", "Splinter", "Shredder", "Leonardo"],
+          "correctAnswer":"Splinter"
+        },
+        {
+            "question": "En Scooby Doo ¿Quién es el líder del grupo?",
+          "options": ["Fred", "Scooby", "Daphne", "Vilma"],
+          "correctAnswer": "Fred"
+        },
+        {
+            "question": "En 'Kick Buttowski: Medio doble de riesgo', ¿cuál es el sueño de Kick?",
+          "options": ["Ser el mejor futbolista", "Ser el mejor ciclista", "Ser el mejor skater", "Ser el mejor acróbata"],
+          "correctAnswer": "Ser el mejor skater"
+        },
+        {
+            "question": "En 'Los Padrinos Mágicos', ¿cuál es el nombre de la niñera de Timmy Turner?",
+          "options": ["Wanda", "Trixie", "Vicky", "Stacy"],
+          "correctAnswer": "Trixie"
+        },
+        {
+            "question": "En 'Phineas y Ferb', ¿cuál es el nombre del científico loco que siempre intenta atrapar a Phineas y Ferb?",
+          "options": ["Dr. Heinz Doofenshmirtz", "Mayor Monograma", "Buford", "Jeremy"],
+          "correctAnswer": "Dr. Heinz Doofenshmirtz"
+        },
+        {
+            "question": " En 'El Show de Tom y Jerry', ¿qué tipo de animal es Tom?",
+          "options": ["Perro", "Gato", "Ratón", "Canario"],
+          "correctAnswer": "Gato"
+        }
+      ]
+    },
+    {
+     "category": "Cine Argentino",
+     "questions": [
+        {
+             "question": "¿Cuál es la película argentina de comedia más premiada?",
+            "options": ["Esperando la Carroza (1985)", "Relatos Salvajes (2014)", "El Secreto de sus Ojos (2009)", ""],
+            "correctAnswer": "Esperando la Carroza (1985)"
+        },
+        {
+            "question": "¿Quién es el director de la película 'Esperando la carroza'?",
+           "options": ["Alejandro Doria", "Juan José Campanella", "Carlos Solín", ""],
+           "correctAnswer": "Alejandro Doria"
+       },
+       {
+          "question": "¿Cuál es la película argentina de comedia más taquillera?",
+         "options": ["Esperando la Carroza (1985)", "Relatos Salvajes (2014)", "El Secreto de sus Ojos (2009)", ""],
+         "correctAnswer": "Relatos Salvajes"
+       },
+       {
+          "question": "¿Quiénes son los protagonistas de la película 'El secreto de sus ojos'?",
+         "options": ["Ricardo Darín y Soledad Villamil", "Guillermo Francella y Julieta Díaz", "Luis Brandoni y Norma Aleandro", ""],
+         "correctAnswer": "Ricardo Darín y Soledad Villamil"
+       }
+        ]
+    },
+    {
+      "category": "Ciencia Ficción",
+      "questions": [
+        {
+          "question": "En 'Interestelar,' ¿qué es el agujero de gusano y cómo se utiliza en la trama?",
+         "options": ["Un dispositivo de viaje en el tiempo.", "Un dispositivo de viaje en el tiempo.", "Un agujero en el espacio-tiempo que permite viajar a otras galaxias.", "Un agujero en el espacio-tiempo que permite viajar a otras galaxias."],
+         "correctAnswer": "Un agujero en el espacio-tiempo que permite viajar a otras galaxias."
+        },
+        {
+            "question": "En 'Volver al Futuro,' ¿qué fuente de energía alimenta la máquina del tiempo de Doc Brown?",
+           "options": ["Gasolina común.", "Uranio enriquecido.", "Plutonio.", "Electricidad solar."],
+           "correctAnswer": "Plutonio."
+          },
+          {
+            "question": "En 'El Efecto Mariposa,' ¿cuál es el poder especial que el personaje principal, Evan, posee?",
+           "options": ["Telequinesis.", "Premoniciones del futuro.", "Cambio de forma.", "Capacidad de viajar en el tiempo."],
+           "correctAnswer": "Capacidad de viajar en el tiempo."
+          },
+          {
+            "question": "En un episodio de 'Black Mirror' titulado 'USS Callister,' ¿cuál es el nombre del personaje interpretado por Jesse Plemons y cuál es su papel en la trama?",
+           "options": ["Capitán Smith, un explorador espacial", "El capitán Daly, un programador de videojuegos", "Teniente Johnson, un científico", "Doctor Harrison, un médico"],
+           "correctAnswer": "El capitán Daly, un programador de videojuegos"
+          }
+        ]
+    },
+    {
+      "category": "Romance",
+      "questions": [
+        {
+            "question": "En la película 'Primer amor', ¿cuál de las siguientes afirmaciones es verdadera sobre la trama?",
+          "options": ["La película se desarrolla en París.", "Los personajes principales son un astronauta y un extraterrestre.", "Los protagonistas experimentan un amor puro a pesar de los desafíos de la enfermedad.", "La historia se centra en una guerra en un mundo de fantasía."],
+          "correctAnswer": "Los protagonistas experimentan un amor puro a pesar de los desafíos de la enfermedad."
+        },
+        {
+            "question": "En la película 'Titanic,' ¿cuál de las siguientes afirmaciones es verdadera sobre la trama? ",
+          "options": ["La película se desarrolla en un transatlántico llamado Britannic.", "Los personajes principales son un detective y un criminal.", "Los protagonistas, Jack y Rose, provienen de diferentes clases sociales.", "La historia se centra en un viaje espacial en el futuro."],
+          "correctAnswer": "Los protagonistas, Jack y Rose, provienen de diferentes clases sociales."
+        },
+        {
+            "question": "En la película '10 cosas que odio de ti,' ¿qué personaje interpreta Heath Ledger? ",
+          "options": ["Patrick Verona ", "Cameron James", "Joey Donner", "Michael Eckman"],
+          "correctAnswer": "Patrick Verona "
+        },
+        {
+            "question": "En la película 'La La Land,' ¿qué profesión tiene el personaje interpretado por Ryan Gosling?",
+          "options": ["Músico de jazz ", "Chef", "Piloto", "Arquitecto"],
+          "correctAnswer": "Músico de jazz "
+        }
+      ]
+    },
+    
+    {
+      "category": "Cine Argentino",
+      "questions": [
+        {
+            "question": "En la película 'Iron Man,' ¿qué actor interpreta el papel de Tony Stark / Iron Man?",
+          "options": ["Chris Hemsworth ", "Robert Downey Jr. ", "Chris Evans ", "Mark Ruffalo"],
+          "correctAnswer": "Robert Downey Jr. "
+        },
+        {
+            "question": "¿Cuál es la primera película de Marvel en la que aparece el personaje de Thor?",
+          "options": ["Thor", "Thor: The Dark World", "The Avengers", "Guardians of the Galaxy"],
+          "correctAnswer": "The Avengers"
+        },
+        {
+            "question": "¿Quién es el enemigo principal en la película 'Black Panther'?",
+          "options": ["loki", "Thanos", "Killmonger", "Red Skull"],
+          "correctAnswer": "Red Skull"
+        },
+        {
+            "question": "En la película 'Guardians of the Galaxy,' ¿cuál es el nombre del mapache genéticamente modificado que forma parte del equipo?",
+          "options": ["Rocket ", "Groot", "Star-Lord ", "Drax"],
+          "correctAnswer": "Rocket "
+        }
+      ]
+    }
+  ]
+  
