@@ -1,5 +1,5 @@
-import { Ruleta } from "../components/ruleta/ruleta";
-import "./../styles/categoria.scss"
+import { Ruleta } from "../../components/ruleta/ruleta";
+import "../Roulette/_roulette_category.scss"
 
 export const RuletaCategoria = () => {
     return (
