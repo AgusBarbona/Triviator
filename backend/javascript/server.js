@@ -90,6 +90,37 @@ app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
+// Nueva ruta para obtener una pregunta aleatoria
+app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const connection = yield db_1.default.getConnection();
+        // Obtener una categoría aleatoria
+        const [categorias] = yield connection.execute('SELECT * FROM categorias ORDER BY RAND() LIMIT 1');
+        const categoriaId = categorias[0].id_categoria;
+        // Obtener una pregunta aleatoria de la categoría seleccionada
+        const [preguntas] = yield connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]);
+        if (preguntas.length === 0) {
+            res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
+            return;
+        }
+        const pregunta = preguntas[0].enunciado;
+        // Obtener todas las opciones para la pregunta seleccionada
+        const opciones = [
+            preguntas[0].respuesta_correcta,
+            preguntas[0].respuesta_opcional_1,
+            preguntas[0].respuesta_opcional_2,
+            preguntas[0].respuesta_opcional_3,
+        ];
+        // Barajar las opciones de manera aleatoria
+        opciones.sort(() => Math.random() - 0.5);
+        connection.release();
+        res.status(200).json({ pregunta, opciones });
+    }
+    catch (error) {
+        console.error('Error al obtener pregunta aleatoria:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+}));
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });
