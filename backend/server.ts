@@ -94,6 +94,58 @@ app.post('/api/login', async (req: Request, res: Response) => {
   }
 });
 
+interface Pregunta {
+  id_pregunta: number;
+  id_categoria: number;
+  enunciado: string;
+  respuesta_correcta: string;
+  respuesta_opcional_1: string;
+  respuesta_opcional_2: string;
+  respuesta_opcional_3: string;
+}
+
+interface Categoria {
+  id_categoria: number;
+}
+
+// Nueva ruta para obtener una pregunta aleatoria
+app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) => {
+  try {
+    const connection = await pool.getConnection();
+
+    // Obtener una categoría aleatoria
+    const [categorias] = await connection.execute('SELECT * FROM categorias ORDER BY RAND() LIMIT 1') as any;
+    const categoriaId = categorias[0].id_categoria;
+
+    // Obtener una pregunta aleatoria de la categoría seleccionada
+    const [preguntas] = await connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]) as any;
+
+    if (preguntas.length === 0) {
+      res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
+      return;
+    }
+
+    const pregunta = preguntas[0].enunciado;
+
+    // Obtener todas las opciones para la pregunta seleccionada
+    const opciones: string[] = [
+      preguntas[0].respuesta_correcta,
+      preguntas[0].respuesta_opcional_1,
+      preguntas[0].respuesta_opcional_2,
+      preguntas[0].respuesta_opcional_3,
+    ];
+
+    // Barajar las opciones de manera aleatoria
+    opciones.sort(() => Math.random() - 0.5);
+    
+    connection.release();
+
+    res.status(200).json({ pregunta, opciones });
+  } catch (error) {
+    console.error('Error al obtener pregunta aleatoria:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
