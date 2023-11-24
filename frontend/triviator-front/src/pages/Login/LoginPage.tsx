@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/LoginPage.scss';
+import '../Login/LoginPage.scss';
 
 
 const Login: React.FC = () => {

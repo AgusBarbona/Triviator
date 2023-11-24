@@ -1,12 +1,12 @@
 
 import { BrowserRouter, Route, Routes} from 'react-router-dom'; 
-import WinnerPage from './pages/Winnerpage'; 
-import LoserPage from './pages/Loserpage';
-import LoginPage from './pages/LoginPage';
-import Avatar from './pages/Avatar';
-import PaginaJuego from './pages/PaginaJuego';
-import DisneyCategory from './pages/DisneyCategory';
-import  {RuletaCategoria}  from './pages/RuletaCategoria';
+import WinnerPage from './pages/WinnerPage/Winnerpage'; 
+import LoserPage from './pages/LoserPage/Loserpage';
+import LoginPage from './pages/Login/LoginPage';
+import Avatar from './pages/Avatar/Avatar';
+import PaginaJuego from './pages/GamePage/PaginaJuego';
+import DisneyCategory from './pages/DisneyCategory/DisneyCategory';
+import  {RuletaCategoria}  from './pages/Roulette/RuletaCategoria';
 import { useState } from 'react';
 
 

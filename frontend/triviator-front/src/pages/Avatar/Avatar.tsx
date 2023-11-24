@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Avatar.scss';
+import '../Avatar/Avatar.scss';
 
 const Avatar: React.FC = () => {
   const [name, setName] = useState('');
