@@ -3,10 +3,17 @@ import "./_juego.scss";
 
 interface OptionBoxProps {
     option: string;
+    handleOptionClick: (option?: string) => void;
 }
 
-const OptionBox: React.FC<OptionBoxProps> = ({ option }) => {
-    return <div className='option-box'>{option}</div>;
+const OptionBox: React.FC<OptionBoxProps> = ({ option, handleOptionClick }) => {
+    const handleClick = () => {
+        handleOptionClick(option);
+      };
+
+    return (
+    <div className='option-box' onClick={handleClick}>{option}</div> 
+    );
 };
 
 export default OptionBox;
