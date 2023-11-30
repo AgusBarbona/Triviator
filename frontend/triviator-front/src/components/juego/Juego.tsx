@@ -18,8 +18,11 @@ export const Juego: React.FC<JuegoProps> = () => {
     try {
       if (preguntasRespondidas < MAX_PREGUNTAS) {
         const response = await fetch('/api/obtener-pregunta-aleatoria');
-        const data = await response.json();
+        if (!response.ok) {
+            throw new Error('Error al obtener pregunta aleatoria');
+        }
 
+        const data = await response.json();
         setPregunta(data.pregunta);
         setOpciones(data.opciones);
         setRespuestaCorrectaDelServidor(data.respuestaCorrecta);
