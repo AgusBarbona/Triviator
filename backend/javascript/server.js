@@ -123,7 +123,7 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
         // Barajar las opciones de manera aleatoria
         opciones.sort(() => Math.random() - 0.5);
         connection.release();
-        res.status(200).json({ pregunta, opciones });
+        res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta });
     }
     catch (error) {
         console.error('Error al obtener pregunta aleatoria:', error);
