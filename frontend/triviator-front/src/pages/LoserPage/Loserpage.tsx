@@ -14,7 +14,7 @@ const LoserPage = () => {
          <Header />
           <div className="loser-container">
           <div className="loser-rectangle">
-            <div className="text"> Perdiste ☹️</div>
+            <div className="text">¡No pasa nada! La práctica hace al maestro</div>
             <img src="../../public/recursos/triste-removebg-preview.png" alt="Popcorn Character" className="sad-popcorn" />
             <Buttons /> 
           </div>
