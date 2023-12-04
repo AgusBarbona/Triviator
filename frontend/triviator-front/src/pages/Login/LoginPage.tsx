@@ -83,7 +83,7 @@ const Login: React.FC = () => {
             <input
               type="text"
               id="username"
-              placeholder="Ingrese su Email de usuario"
+              placeholder="Ingrese su Usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
