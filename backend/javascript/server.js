@@ -90,6 +90,15 @@ app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
+const obtenerNombreDeUsuarioDesdeSesion = (req) => {
+    var _a;
+    const username = (_a = req.body) === null || _a === void 0 ? void 0 : _a.username;
+    // Verificar si se proporcionó un nombre de usuario
+    if (username) {
+        return username;
+    }
+    return null;
+};
 // Nueva ruta para obtener una pregunta aleatoria
 app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -114,10 +123,39 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
         // Barajar las opciones de manera aleatoria
         opciones.sort(() => Math.random() - 0.5);
         connection.release();
-        res.status(200).json({ pregunta, opciones });
+        res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta });
     }
     catch (error) {
         console.error('Error al obtener pregunta aleatoria:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+}));
+// Ruta para manejar la respuesta del usuario y registrar la puntuación
+app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { opcionSeleccionada, respuestaCorrecta } = req.body;
+    try {
+        const username = obtenerNombreDeUsuarioDesdeSesion(req);
+        if (!username) {
+            res.status(401).json({ mensaje: 'Usuario no autenticado' });
+            return;
+        }
+        const connection = yield db_1.default.getConnection();
+        if (opcionSeleccionada === respuestaCorrecta) {
+            const puntosGanados = 500;
+            yield connection.execute('UPDATE usuarios SET puntos = puntos + ? WHERE username = ?', [puntosGanados, username]);
+            console.log('Respuesta correcta. Sumar 500 puntos.');
+            res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 500 puntos.' });
+        }
+        else {
+            const puntosPerdidos = 200;
+            yield connection.execute('UPDATE usuarios SET puntos = puntos - ? WHERE username = ?', [puntosPerdidos, username]);
+            console.log('Respuesta incorrecta. Restar 200 puntos.');
+            res.status(200).json({ mensaje: 'Respuesta incorrecta. Restar 200 puntos.' });
+        }
+        connection.release();
+    }
+    catch (error) {
+        console.error('Error al procesar la respuesta del usuario:', error);
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
