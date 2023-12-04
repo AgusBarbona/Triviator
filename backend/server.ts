@@ -59,11 +59,8 @@ app.post('/api/registro', async (req: Request, res: Response) => {
       return;
     }
 
-    const contraseñaValida = contraseña !== undefined ? contraseña : null;
     // Insertar el nuevo usuario en la base de datos
-    const [result] = await connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseñaValida]);
-
-   
+    const [result] = await connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseña]);
 
     connection.release();
 
