@@ -78,7 +78,7 @@ const Login: React.FC = () => {
           <p className='para-jugar'>Inicia Sesión para empezar a jugar</p>
         </div>
           <div className="form-group">
-            <label htmlFor="username">Usuario:</label>
+            <label htmlFor="username">Usuario</label>
             <input
               type="text"
               id="username"
@@ -88,7 +88,7 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Contraseña:</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"

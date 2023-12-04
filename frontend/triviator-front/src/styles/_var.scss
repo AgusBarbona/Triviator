@@ -1,7 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Poppins&family=Rowdies:wght@300&family=Ubuntu:wght@400;500;700&display=swap');
 
+$font-family: 'Poppins', 'Nunito','Rowdies';  
+
+//header color
 $header-color: #BC7AF9; 
+
+//button color
 $button-1-color: #76269B;
 $button-2-color: #BC7AF9;
 
+//color background
+$color-background: #9CD9E7;
+$color-primary: #BC7AF9;
+$color-secondary: #76269B;
+$color-white: #fff;
+$color-error: #ff3860;
+$color-hover-primary: #7a57d1; // Ajusta este color según tu preferencia
+
+
+//font size
+$font-size-large: 3rem;
+$font-size-medium: 1.4rem;
+$font-size-small: 1rem;
+$border-radius: 20px;
+$box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
