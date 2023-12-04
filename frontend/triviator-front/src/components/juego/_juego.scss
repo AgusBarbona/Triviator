@@ -43,6 +43,14 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 
+    &.correct {
+      background-color: #8effa1; 
+    }
+  
+    &.incorrect {
+      background-color: #ff8c8c; 
+    }
+
     &:hover {
        
         background-color: #BC7AF9;
