@@ -101,3 +101,4 @@ export const Juego: React.FC<JuegoProps> = () => {
     </div>
   );
 };
+
