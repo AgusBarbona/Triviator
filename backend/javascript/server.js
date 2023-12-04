@@ -53,9 +53,8 @@ app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, functi
             res.status(400).json({ mensaje: 'El usuario o correo ya están registrados' });
             return;
         }
-        const contraseñaValida = contraseña !== undefined ? contraseña : null;
         // Insertar el nuevo usuario en la base de datos
-        const [result] = yield connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseñaValida]);
+        const [result] = yield connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseña]);
         connection.release();
         // Verificar si la inserción fue exitosa
         if (result && 'insertId' in result) {

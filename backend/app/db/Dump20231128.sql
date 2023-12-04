@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+/*-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: triviator
 -- ------------------------------------------------------
@@ -106,3 +106,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-11-28 10:55:05
+*/
