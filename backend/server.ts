@@ -2,12 +2,21 @@ import express, { Request, Response } from 'express';
 const app = express();
 import { pool } from './app/models/db';
 import cors from 'cors';
+import jwt, { Secret } from 'jsonwebtoken';
+
+// Definición de tipo para el payload del token
+interface TokenPayload {
+  username: string;
+}
 
 const port: number = parseInt (process.env.PORT || '3000', 10);
+const secretKey: Secret = 'triviatorProyecto2023'
 
 
 app.use(express.json());
 app.use(cors());
+
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello home server!");
@@ -67,7 +76,33 @@ app.post('/api/registro', async (req: Request, res: Response) => {
   }
 });
 
+// middleware para verificar el token
+const verificaToken = (
+  req: Request<any, any, { username?: string }>,
+  res: Response,
+  next: Function
+) => {
+  const token = req.headers.authorization;
 
+  if (!token) {
+    return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    req.body = { ...req.body, username: decoded.username };
+    next();
+  } catch (error) {
+    return res.status(403).json({ mensaje: 'Token no válido' });
+  }
+};
+
+
+// Rutas protegidas
+app.get('/api/ruta-protegida', verificaToken, (req: Request, res: Response) => {
+  const username = (req as any).body.username;
+  res.json({ mensaje: 'Ruta protegida', username });
+});
 // nueva ruta para manejar el inicio de sesión
 app.post('/api/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -84,7 +119,10 @@ app.post('/api/login', async (req: Request, res: Response) => {
     connection.release();
 
     if (Array.isArray(rows) && rows.length > 0) {
-      res.status(200).json({ mensaje: 'Autenticación exitosa' });
+     // Generar un token JWT
+      const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
+
+      res.status(200).json({ mensaje: 'Autenticación exitosa', token });
     } else {
       res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos' });
     }
@@ -93,6 +131,7 @@ app.post('/api/login', async (req: Request, res: Response) => {
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
+
 
 interface Pregunta {
   id_pregunta: number;
