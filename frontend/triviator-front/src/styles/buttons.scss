@@ -9,7 +9,7 @@
 }
 
 .button {
-  padding: 8px;
+  padding: 5%;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -17,15 +17,15 @@
   text-align: center;
   width: 250px;
   height: 45px;
-  font-size: 22px;
-  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 20px;
+  font-family: $font-family;
   transition: background-color 0.3s ease;
 }
 
 .button-1 {
   background-color: $button-1-color;
   color: white;
-  padding: 8px 45px;
+  padding: 8px 43px;
 }
 
 .button-2 {
