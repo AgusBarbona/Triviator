@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../Login/LoginPage.scss';
 
 
@@ -70,7 +71,7 @@ const Login: React.FC = () => {
     <div className="login-container">
       <div className="login-side">
       <h1 className="brand-title">Triviator</h1>
-      <p className="welcome-message">Bienvenid@ Cinéfilo</p>
+      <p className="welcome-message">Bienvenid@ de Nuevo Triviarcito</p>
         <img src="../../public/recursos/png.png" alt="Popcorn Character" className="popcorn-image" />
       </div>
       <form className="login-form" onSubmit={handleSubmit}>
@@ -101,6 +102,8 @@ const Login: React.FC = () => {
           <button type="submit" className="login-button">
             Iniciar Sesión
           </button>
+          <Link to="/register" className="login-link">¿No sos un Triviarcito? Registrate</Link>
+
         </form>
       </div>
     </div>

@@ -16,7 +16,9 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const db_1 = require("./app/models/db");
 const cors_1 = __importDefault(require("cors"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const port = parseInt(process.env.PORT || '3000', 10);
+const secretKey = 'triviatorProyecto2023';
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
@@ -67,6 +69,26 @@ app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
+// middleware para verificar el token
+const verificaToken = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({ mensaje: 'Token no proporcionado' });
+    }
+    try {
+        const decoded = jsonwebtoken_1.default.verify(token, secretKey);
+        req.body = Object.assign(Object.assign({}, req.body), { username: decoded.username });
+        next();
+    }
+    catch (error) {
+        return res.status(403).json({ mensaje: 'Token no válido' });
+    }
+};
+// Rutas protegidas
+app.get('/api/ruta-protegida', verificaToken, (req, res) => {
+    const username = req.body.username;
+    res.json({ mensaje: 'Ruta protegida', username });
+});
 // nueva ruta para manejar el inicio de sesión
 app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
@@ -79,7 +101,9 @@ app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function*
         // Liberar la conexión de vuelta al pool
         connection.release();
         if (Array.isArray(rows) && rows.length > 0) {
-            res.status(200).json({ mensaje: 'Autenticación exitosa' });
+            // Generar un token JWT
+            const token = jsonwebtoken_1.default.sign({ username }, secretKey, { expiresIn: '1h' });
+            res.status(200).json({ mensaje: 'Autenticación exitosa', token });
         }
         else {
             res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos' });

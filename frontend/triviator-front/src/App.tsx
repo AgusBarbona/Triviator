@@ -2,6 +2,7 @@
 import { BrowserRouter, Route, Routes} from 'react-router-dom'; 
 import WinnerPage from './pages/WinnerPage/Winnerpage'; 
 import LoserPage from './pages/LoserPage/Loserpage';
+import Register from './pages/Registro/Register';
 import LoginPage from './pages/Login/LoginPage';
 import Avatar from './pages/Avatar/Avatar';
 import PaginaJuego from './pages/GamePage/PaginaJuego';
@@ -33,6 +34,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
+        <Route path="/register" element={<Register/>}/>
         <Route path="/avatar/" element={< Avatar/>}/>
         <Route path="/winner/" element={< WinnerPage/>}/>
         <Route path="/loser/" element={<LoserPage/>}/>
