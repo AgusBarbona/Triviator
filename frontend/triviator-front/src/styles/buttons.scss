@@ -9,29 +9,35 @@
 }
 
 .button {
-  padding: 8px;
+  padding: 10px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold; 
   text-align: center;
-  width: 250px;
-  height: 45px;
-  font-size: 22px;
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
   font-family: 'Merriweather Sans', sans-serif;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  margin-bottom: 10px;
 }
+
+.button-1,
+.button-2 {
+  color: white;
+  padding: 8px 35px; 
+} 
 
 .button-1 {
   background-color: $button-1-color;
-  color: white;
-  padding: 8px 45px;
+
 }
 
 .button-2 {
   background-color: $button-2-color;
-  color: white;
-  padding: 8px 50px;
+
 }
 
 @media screen and (min-width: 768px) {
@@ -47,12 +53,18 @@
   .button-1{
     align-self: flex-start;
     margin-right: 2%;
-    margin-left: 2%;
   }
 
   .button-2 {
     align-self: flex-end;
     margin-right: 2%;
     
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .button {
+    padding: 8px;
+    font-size: 16px;
   }
 }
