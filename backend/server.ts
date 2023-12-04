@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 const app = express();
-import pool from './app/models/db';
+import { pool } from './app/models/db';
 import cors from 'cors';
 
 const port: number = parseInt (process.env.PORT || '3000', 10);
