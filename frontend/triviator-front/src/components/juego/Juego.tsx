@@ -10,6 +10,7 @@ export const Juego: React.FC<JuegoProps> = () => {
   const [respuestaCorrectaDelServidor, setRespuestaCorrectaDelServidor] = useState<string>('');
   const [pregunta, setPregunta] = useState('');
   const [opciones, setOpciones] = useState<string[]>([]);
+  const [seleccionRealizada, setSeleccionRealizada] = useState(false);
   const [preguntasRespondidas, setPreguntasRespondidas] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
   const MAX_PREGUNTAS = 10;
@@ -47,27 +48,34 @@ export const Juego: React.FC<JuegoProps> = () => {
             respuestaCorrecta: respuestaCorrectaDelServidor,
           }),
         });
-
+  
         const data = await response.json();
-
+  
         if (response.ok) {
-            console.log(data.mensaje);
-            setPuntuacion((prevPuntuacion) => {
-              const newPuntuacion = prevPuntuacion + 500;
-              console.log("Nueva puntuación:", newPuntuacion);
-              return newPuntuacion;
-            });
+          console.log(data.mensaje);
+          setPuntuacion((prevPuntuacion) => {
+            const newPuntuacion = prevPuntuacion + 500;
+            console.log("Nueva puntuación:", newPuntuacion);
+            return newPuntuacion;
+          });
         } else {
           console.error(data.mensaje);
           // Mostrar un mensaje de error al usuario en la interfaz
         }
-
-        setPreguntasRespondidas((prevPreguntas) => prevPreguntas + 1);
+  
+        setSeleccionRealizada(true);
+  
+        setTimeout(() => {
+          setPreguntasRespondidas((prevPreguntas) => prevPreguntas + 1);
+          setSeleccionRealizada(false); 
+          fetchData(); 
+        }, 2000); 
       }
     } catch (error) {
       console.error("Error al procesar la respuesta:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -78,7 +86,13 @@ export const Juego: React.FC<JuegoProps> = () => {
       <QuestionBox question={pregunta} />
       <div className="options-container">
         {opciones.map((opcion, index) => (
-          <OptionBox key={index} option={opcion} handleOptionClick={() => handleOptionClick(opcion)} />
+          <OptionBox
+            key={index}
+            option={opcion}
+            handleOptionClick={() => handleOptionClick(opcion)}
+            isCorrect={opcion === respuestaCorrectaDelServidor}
+            showColors={seleccionRealizada}
+          />
         ))}
       </div>
       <div className="puntuacion-container">
@@ -87,4 +101,3 @@ export const Juego: React.FC<JuegoProps> = () => {
     </div>
   );
 };
- 

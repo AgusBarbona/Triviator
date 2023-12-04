@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
-const db_1 = __importDefault(require("./app/models/db"));
+const db_1 = require("./app/models/db");
 const cors_1 = __importDefault(require("cors"));
 const port = parseInt(process.env.PORT || '3000', 10);
 app.use(express_1.default.json());
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 app.get("/api", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Obtener una conexión del pool
-        const connection = yield db_1.default.getConnection();
+        const connection = yield db_1.pool.getConnection();
         // Realizar operaciones en la base de datos según sea necesario
         res.json({ message: "Hello server!" });
         // Liberar la conexión de vuelta al pool
@@ -44,7 +44,7 @@ app.get("/api/v1", (req, res) => {
 app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, correo, contraseña } = req.body;
     try {
-        const connection = yield db_1.default.getConnection();
+        const connection = yield db_1.pool.getConnection();
         // Verificar si el usuario ya existe
         const [existingUsers] = yield connection.execute('SELECT * FROM usuarios WHERE username = ? OR correo = ?', [username, correo]);
         if (Array.isArray(existingUsers) && existingUsers.length > 0) {
@@ -73,7 +73,7 @@ app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function*
     console.log('Intento de inicio de sesión para el usuario:', username);
     try {
         // Obtener una conexión del pool
-        const connection = yield db_1.default.getConnection();
+        const connection = yield db_1.pool.getConnection();
         // Realizar la consulta para verificar las credenciales
         const [rows] = yield connection.execute('SELECT * FROM usuarios WHERE username = ? AND contraseña = ?', [username, password]);
         // Liberar la conexión de vuelta al pool
@@ -102,7 +102,7 @@ const obtenerNombreDeUsuarioDesdeSesion = (req) => {
 // Nueva ruta para obtener una pregunta aleatoria
 app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const connection = yield db_1.default.getConnection();
+        const connection = yield db_1.pool.getConnection();
         // Obtener una categoría aleatoria
         const [categorias] = yield connection.execute('SELECT * FROM categorias ORDER BY RAND() LIMIT 1');
         const categoriaId = categorias[0].id_categoria;
@@ -139,7 +139,7 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
             res.status(401).json({ mensaje: 'Usuario no autenticado' });
             return;
         }
-        const connection = yield db_1.default.getConnection();
+        const connection = yield db_1.pool.getConnection();
         if (opcionSeleccionada === respuestaCorrecta) {
             const puntosGanados = 500;
             yield connection.execute('UPDATE usuarios SET puntos = puntos + ? WHERE username = ?', [puntosGanados, username]);
