@@ -7,7 +7,7 @@ $color-hover-primary: #7a57d1;
 $color-link: #159AB8;
 
 $font-size-large: 3rem;
-$font-size-medium: 1.4rem;
+$font-size-medium: 1.3rem;
 $font-size-small: 1rem;
 $border-radius: 20px;
 $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -23,6 +23,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 .login-container {
   display: flex;
   width: 50%;
+  
   min-height: 70vh;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
@@ -35,7 +36,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 2rem 2rem 3.5rem 2rem;
     color: $color-white;
 
     .popcorn-image {
@@ -55,7 +56,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     }
     
     .welcome-message {
-      font-size: $font-size-small; 
+      font-size: $font-size-medium; 
       font-weight: bold; 
       font-style: italic; 
     }
@@ -88,6 +89,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
       input {
         padding: 0.8rem;
+        color:$color-secondary;
         border: 2px solid #ccc;
         border-radius: $border-radius;
         font-size: $font-size-small;
