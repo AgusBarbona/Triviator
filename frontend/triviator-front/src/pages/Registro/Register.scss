@@ -1,9 +1,9 @@
 $color-background: #9CD9E7;
-$color-primary: #BC7AF9;
-$color-secondary: #76269B;
+$color-primary: #99d871;
+$color-secondary: #60b32d;
 $color-white: #fff;
 $color-error: #ff3860;
-$color-hover-primary: #7a57d1;
+$color-hover-primary: #73CB3E; 
 $color-link: #159AB8;
 
 $font-size-large: 3rem;
@@ -12,7 +12,7 @@ $font-size-small: 1rem;
 $border-radius: 20px;
 $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
-.login-page {
+.register-page { 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   background-color: $color-background;
 }
 
-.login-container {
+.register-container { 
   display: flex;
   width: 50%;
   min-height: 70vh;
@@ -28,7 +28,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: $border-radius;
   overflow: hidden;
 
-  .login-side {
+  .register-side { 
     background: linear-gradient(to bottom, $color-primary, $color-secondary);
     flex: 0 0 250px;
     display: flex;
@@ -51,17 +51,19 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
       font-size: $font-size-large;
       text-align: center;
       font-weight: 800; 
-      text-shadow: 2px 2px 4px rgba(118, 38, 155, 0.5);
+      text-shadow: 2px 2px 4px rgba(38, 155, 85, 0.5);
+      color: white; 
     }
     
     .welcome-message {
-      font-size: $font-size-small; 
+      font-size: $font-size-medium; 
       font-weight: bold; 
       font-style: italic; 
+      color: white; 
     }
   }
 
-  .login-form {
+  .register-form { 
     flex: 1; 
     background-color: $color-white; 
     padding: 2rem;
@@ -94,7 +96,7 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
       }
     }
 
-    .login-button {
+    .register-button { 
       background-color: $color-secondary;
       color: $color-white;
       padding: 1rem;
@@ -115,8 +117,10 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
       margin-bottom: 1rem;
       font-size: 0.85rem;
     }
+
   }
-  .login-link {
+
+.login-link {
     color: $color-link; 
     text-decoration: none;
     font-size: $font-size-small;
@@ -127,6 +131,4 @@ $box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
       color: darken($color-primary, 10%);
     }
   }
-
-
 }
