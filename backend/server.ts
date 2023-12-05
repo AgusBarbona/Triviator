@@ -3,6 +3,7 @@ const app = express();
 import { pool } from './app/models/db';
 import cors from 'cors';
 import jwt, { Secret } from 'jsonwebtoken';
+import { RowDataPacket } from 'mysql2';
 
 // Definición de tipo para el payload del token
 interface TokenPayload {
@@ -201,7 +202,7 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 
 // Ruta para manejar la respuesta del usuario y registrar la puntuación
 app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
-  const { opcionSeleccionada, respuestaCorrecta } = req.body;
+  const { idPregunta, opcionSeleccionada } = req.body;
    
 
   try {
@@ -216,24 +217,22 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
     const connection = await pool.getConnection();
 
 
-    const puntosGanados = 500;
+    const [respuesta] = await connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
+    const respuestaCorrecta = (respuesta as RowDataPacket[])[0]?.respuesta_correcta;
+
+    if (opcionSeleccionada === respuestaCorrecta) {
+      const puntosGanados = 10;
 
       await connection.execute('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
-     if (opcionSeleccionada === respuestaCorrecta) {
-      
 
-      console.log('Respuesta correcta. Sumar 500 puntos.');
-      res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 500 puntos.' });
+      console.log('Respuesta correcta. Sumar 10 puntos.');
+      res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.' });
     } else {
-      const puntosPerdidos = 200;
-
-      await connection.execute('UPDATE users SET points = points - ? WHERE username = ?', [puntosPerdidos, username]);
-
-      console.log('Respuesta incorrecta. Restar 200 puntos.');
-      res.status(200).json({ mensaje: 'Respuesta incorrecta. Restar 200 puntos.' });
+      console.log('Respuesta incorrecta. No se suman puntos.');
+      res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.' });
     }
-
     connection.release();
+
   } catch (error: any) {
     console.error('Error al procesar la respuesta del usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
