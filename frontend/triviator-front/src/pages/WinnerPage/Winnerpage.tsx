@@ -6,6 +6,7 @@
 
 import Header from '../../components/header/Header';
 import Buttons from '../../components/buttons/buttons';
+import Emocionado from '../../../public/recursos/emocionado.png';
 import '../../pages/WinnerPage/winner.scss';
 
 const  WinnerPage = () => {
@@ -15,7 +16,7 @@ const  WinnerPage = () => {
           <div className="winner-container">
           <div className="winner-rectangle">
             <div className="text">¡Felicidades, eres un maestro de la trivia!</div>
-            <img src="../../public/recursos/emocionado-removebg-preview.png" alt="Popcorn Character" className="happy-popcorn" />
+            <img src={Emocionado} alt="Popcorn Character" className="happy-popcorn" />
             <Buttons />
           </div>
         </div>

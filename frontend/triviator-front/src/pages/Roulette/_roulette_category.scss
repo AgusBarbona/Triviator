@@ -1,44 +1,39 @@
-
+$color-white: #f2ebf3;
+$color-background: #9CD9E7;
 
 .Categoria {
-    background-color: #C5F4A8;
+    //background-color: #9CD9E7;
+    //background: linear-gradient(to top , $color-white, $color-background);
+    background-color: $color-white;
     max-width: 100%;
-
+    //estilo de ondas
+    background-size: cover; /* Ajusta el tamaño de la imagen según sea necesario */
+    background-position: center;
+    z-index: -1;
+   
 }
-
 
 .ruleta-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
+    padding: 2% 0%;
     width: 100%; 
     min-height: 100vh;
     max-width: 1400px;
     .sorprendido{
         width: 350px;
         height: 350px;
-        margin: -27rem 67em -4.5em 1rem;
+        margin: -25rem 60em -4.5em 1rem;
         padding:5rem 2rem 1rem 0rem;
     }
-
-
+    
 }
-/*.ruleta-container {
-    display: flex;
-    flex-direction: row; /* Cambiado de 'column' a 'row' para que los elementos estén en fila */
-   /* align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
-    max-width: 1400px;
-  
-    .sorprendido {
-      width: 200px; /* Ajusta el tamaño según sea necesario */
-   /*   height: 200px; /* Ajusta el tamaño según sea necesario */
- /*     margin-right: 20px; /* Ajusta el margen derecho para separar la imagen de la ruleta */
-      /* Elimina el margen, padding y ajusta según sea necesario para la posición vertical */
-/*      margin: 2rem 20px 2rem 0; 
-    }
+.group{
+    width: 180px;
+    height: 180px;
+    margin: -32rem 55em -4.5em 1rem;
+    padding:5rem 2rem 1rem 0rem;
 }
-*/
+
