@@ -71,7 +71,7 @@ const Login: React.FC = () => {
     <div className="login-container">
       <div className="login-side">
       <h1 className="brand-title">Triviator</h1>
-      <p className="welcome-message">Bienvenid@ de Nuevo Triviarcito</p>
+      <p className="welcome-message">Bienvenid@ de nuevo Triviarcito</p>
         <img src="../../public/recursos/png.png" alt="Popcorn Character" className="popcorn-image" />
       </div>
       <form className="login-form" onSubmit={handleSubmit}>
@@ -79,7 +79,7 @@ const Login: React.FC = () => {
           <p className='para-jugar'>Inicia Sesión para empezar a jugar</p>
         </div>
           <div className="form-group">
-            <label htmlFor="username">Usuario:</label>
+            <label htmlFor="username">Usuario</label>
             <input
               type="text"
               id="username"
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Contraseña:</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"
