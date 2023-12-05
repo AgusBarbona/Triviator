@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 import './Register.scss';
 
 const Register: React.FC = () => {
-  // Estado para los campos del formulario
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Hook para la navegación
+
   const navigate = useNavigate();
 
-  // Función para manejar el envío del formulario
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (!email || !password) {
+    if (!username || !email || !password) {
       setError('Por favor ingrese un usuario, email y contraseña válidos.');
       return;
     }
@@ -27,7 +27,7 @@ const Register: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
 
       if (response.ok) {
@@ -54,13 +54,22 @@ const Register: React.FC = () => {
           <h1 className="brand-title">Triviator</h1>
           <p className="welcome-message">Bienvenid@ Cinéfilo</p>
           {/* Agregar una imagen aquí */}
-          <img src="../../public/recursos/png.png" alt="Popcorn Character" className="popcorn-image" />
+          <img src="../../public/recursos/emocionadosinfondo.png" alt="Popcorn Character" className="popcorn-image" />
         </div>
         <form className="register-form" onSubmit={handleSubmit}> {/* Cambio de "login-form" a "register-form" */}
           <div className="welcome-title-container">
             <p className="para-jugar">Regístrate para Jugar</p>
           </div>
-          
+          <div className="form-group">
+          <label htmlFor="username">Usuario:</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Ingrese su nombre de usuario"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
           <div className="form-group">
             <label htmlFor="email">Correo Electrónico:</label>
             <input
