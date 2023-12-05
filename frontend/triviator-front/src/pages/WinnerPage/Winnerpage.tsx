@@ -14,7 +14,7 @@ const  WinnerPage = () => {
          <Header />
           <div className="winner-container">
           <div className="winner-rectangle">
-            <div className="text">¡FELICITACIONES , GANASTE!</div>
+            <div className="text">¡Felicidades, eres un maestro de la trivia!</div>
             <img src="../../public/recursos/emocionado-removebg-preview.png" alt="Popcorn Character" className="happy-popcorn" />
             <Buttons />
           </div>
