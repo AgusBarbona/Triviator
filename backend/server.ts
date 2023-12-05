@@ -43,25 +43,25 @@ app.get("/api/v1", (req: Request, res: Response) => {
   res.json({ message: "Hola desde boton" });
 });
 
-// nueva ruta para el registro de usuarios
+// nueva ruta para el registro de users
 
 app.post('/api/registro', async (req: Request, res: Response) => {
-  const { username, correo, contraseña } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     const connection = await pool.getConnection();
 
     // Verificar si el usuario ya existe
-    const [existingUsers] = await connection.execute('SELECT * FROM usuarios WHERE username = ? OR correo = ?', [username, correo]);
-
+    const [existingUsers] = await connection.execute('SELECT * FROM users WHERE username = ? OR email = ?', [username, email]);
+    console.log()
     if (Array.isArray(existingUsers) && existingUsers.length > 0) {
-      res.status(400).json({ mensaje: 'El usuario o correo ya están registrados' });
+      res.status(400).json({ mensaje: 'El usuario o email ya están registrados' });
       return;
     }
 
     // Insertar el nuevo usuario en la base de datos
-    const [result] = await connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseña]);
-
+    const [result] = await connection.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, password]);
+    
     connection.release();
 
     // Verificar si la inserción fue exitosa
@@ -103,7 +103,10 @@ app.get('/api/ruta-protegida', verificaToken, (req: Request, res: Response) => {
   const username = (req as any).body.username;
   res.json({ mensaje: 'Ruta protegida', username });
 });
+
+
 // nueva ruta para manejar el inicio de sesión
+
 app.post('/api/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
   console.log('Intento de inicio de sesión para el usuario:', username);
@@ -113,7 +116,7 @@ app.post('/api/login', async (req: Request, res: Response) => {
     const connection = await pool.getConnection();
 
     // Realizar la consulta para verificar las credenciales
-    const [rows] = await connection.execute('SELECT * FROM usuarios WHERE username = ? AND contraseña = ?', [username, password]);
+    const [rows] = await connection.execute('SELECT * FROM users WHERE username = ? AND password = ?', [username, password]);
 
     // Liberar la conexión de vuelta al pool
     connection.release();
@@ -132,6 +135,16 @@ app.post('/api/login', async (req: Request, res: Response) => {
   }
 });
 
+const obtenerNombreDeUsuarioDesdeSesion = (req: Request): string | null => {
+  const username = req.body?.username;
+
+  // Verificar si se proporcionó un nombre de usuario
+  if (username) {
+    return username;
+  }
+
+  return null;
+};
 
 interface Pregunta {
   id_pregunta: number;
@@ -146,17 +159,6 @@ interface Pregunta {
 interface Categoria {
   id_categoria: number;
 }
-
-const obtenerNombreDeUsuarioDesdeSesion = (req: Request): string | null => {
-  const username = req.body?.username;
-
-  // Verificar si se proporcionó un nombre de usuario
-  if (username) {
-    return username;
-  }
-
-  return null;
-};
 
 // Nueva ruta para obtener una pregunta aleatoria
 app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) => {
@@ -213,17 +215,19 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
 
     const connection = await pool.getConnection();
 
-    if (opcionSeleccionada === respuestaCorrecta) {
-      const puntosGanados = 500;
 
-      await connection.execute('UPDATE usuarios SET puntos = puntos + ? WHERE username = ?', [puntosGanados, username]);
+    const puntosGanados = 500;
+
+      await connection.execute('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
+     if (opcionSeleccionada === respuestaCorrecta) {
+      
 
       console.log('Respuesta correcta. Sumar 500 puntos.');
       res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 500 puntos.' });
     } else {
       const puntosPerdidos = 200;
 
-      await connection.execute('UPDATE usuarios SET puntos = puntos - ? WHERE username = ?', [puntosPerdidos, username]);
+      await connection.execute('UPDATE users SET points = points - ? WHERE username = ?', [puntosPerdidos, username]);
 
       console.log('Respuesta incorrecta. Restar 200 puntos.');
       res.status(200).json({ mensaje: 'Respuesta incorrecta. Restar 200 puntos.' });
