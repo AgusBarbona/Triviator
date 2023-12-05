@@ -13,6 +13,7 @@ export const Juego: React.FC<JuegoProps> = () => {
   const [seleccionRealizada, setSeleccionRealizada] = useState(false);
   const [preguntasRespondidas, setPreguntasRespondidas] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
+  const [idPregunta, setIdPregunta] = useState<number>(0);
   const MAX_PREGUNTAS = 10;
 
   const fetchData = async () => {
@@ -24,6 +25,7 @@ export const Juego: React.FC<JuegoProps> = () => {
         }
 
         const data = await response.json();
+        setIdPregunta(data.id_pregunta);
         setPregunta(data.pregunta);
         setOpciones(data.opciones);
         setRespuestaCorrectaDelServidor(data.respuestaCorrecta);
@@ -44,27 +46,23 @@ export const Juego: React.FC<JuegoProps> = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            idPregunta, // Envía el ID de la pregunta
             opcionSeleccionada: opcion,
-            respuestaCorrecta: respuestaCorrectaDelServidor,
           }),
         });
-  
+
         const data = await response.json();
-  
+
         if (response.ok) {
           console.log(data.mensaje);
-          setPuntuacion((prevPuntuacion) => {
-            const newPuntuacion = prevPuntuacion + 500;
-            console.log("Nueva puntuación:", newPuntuacion);
-            return newPuntuacion;
-          });
+          if (data.mensaje.includes('correcta')) {
+            setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
+          }
         } else {
           console.error(data.mensaje);
-          // Mostrar un mensaje de error al usuario en la interfaz
         }
-  
+
         setSeleccionRealizada(true);
-  
         setTimeout(() => {
           setPreguntasRespondidas((prevPreguntas) => prevPreguntas + 1);
           setSeleccionRealizada(false); 
