@@ -15,4 +15,30 @@
     width: 100%; 
     min-height: 100vh;
     max-width: 1400px;
+    .sorprendido{
+        width: 350px;
+        height: 350px;
+        margin: -27rem 67em -4.5em 1rem;
+        padding:5rem 2rem 1rem 0rem;
+    }
+
+
 }
+/*.ruleta-container {
+    display: flex;
+    flex-direction: row; /* Cambiado de 'column' a 'row' para que los elementos estén en fila */
+   /* align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 1400px;
+  
+    .sorprendido {
+      width: 200px; /* Ajusta el tamaño según sea necesario */
+   /*   height: 200px; /* Ajusta el tamaño según sea necesario */
+ /*     margin-right: 20px; /* Ajusta el margen derecho para separar la imagen de la ruleta */
+      /* Elimina el margen, padding y ajusta según sea necesario para la posición vertical */
+/*      margin: 2rem 20px 2rem 0; 
+    }
+}
+*/
