@@ -159,14 +159,16 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
 app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { idPregunta, opcionSeleccionada } = req.body;
+    console.log(idPregunta, opcionSeleccionada);
     try {
         const username = obtenerNombreDeUsuarioDesdeSesion(req);
-        if (!username) {
-            res.status(401).json({ mensaje: 'Usuario no autenticado' });
-            return;
-        }
+        /*if (!username) {
+          res.status(401).json({ mensaje: 'Usuario no autenticado' });
+          return;
+        }*/
         const connection = yield db_1.pool.getConnection();
         const [respuesta] = yield connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
+        console.log(respuesta);
         const respuestaCorrecta = (_a = respuesta[0]) === null || _a === void 0 ? void 0 : _a.respuesta_correcta;
         if (opcionSeleccionada === respuestaCorrecta) {
             const puntosGanados = 10;

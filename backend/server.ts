@@ -203,21 +203,22 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 // Ruta para manejar la respuesta del usuario y registrar la puntuación
 app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
   const { idPregunta, opcionSeleccionada } = req.body;
-   
+   console.log(idPregunta, opcionSeleccionada);
 
   try {
     
     const username = obtenerNombreDeUsuarioDesdeSesion(req);
 
-    if (!username) {
+    /*if (!username) {
       res.status(401).json({ mensaje: 'Usuario no autenticado' });
       return;
-    }
+    }*/
 
     const connection = await pool.getConnection();
 
 
     const [respuesta] = await connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
+    console.log(respuesta);
     const respuestaCorrecta = (respuesta as RowDataPacket[])[0]?.respuesta_correcta;
 
     if (opcionSeleccionada === respuestaCorrecta) {
