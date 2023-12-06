@@ -34,9 +34,9 @@ const Register: React.FC = () => {
         console.log('Registro exitoso');
         setError('');
 
-        // Redirigir al usuario a la página de inicio
-        navigate('/inicio');
-        console.log('Redirigido a inicio');
+        // Redirigir al usuario a la página de avatares
+        navigate('/avatar');
+        console.log('Redirigido a Avatar');
       } else {
         const data = await response.json();
         setError(data.mensaje);

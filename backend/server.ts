@@ -206,10 +206,10 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
 
   try {
     const username = obtenerNombreDeUsuarioDesdeSesion(req);
-    if (!username) {
+    /*if (!username) {
       res.status(401).json({ mensaje: 'Usuario no autenticado' });
       return;
-    }
+    }*/
 
     const connection = await pool.getConnection();
     const [respuesta] = await connection.query(
@@ -217,7 +217,7 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
       [idPregunta]
     );
 
-    const respuestaCorrecta = respuesta[0]?.respuesta_correcta;
+    const respuestaCorrecta = (respuesta as RowDataPacket[])[0]?.respuesta_correcta;
 
     if (opcionSeleccionada === respuestaCorrecta) {
       const puntosGanados = 10;

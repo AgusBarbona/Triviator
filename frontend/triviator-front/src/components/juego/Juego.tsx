@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
 import "./_juego.scss";
 import QuestionBox from "./QuestionBox";
 import OptionBox from "./OptionBox";
+import { useEffect, useState } from "react";
+
 
 interface JuegoProps {}
 
 export const Juego: React.FC<JuegoProps> = () => {
+  const [respuestaCorrectaDelServidor, setRespuestaCorrectaDelServidor] = useState<string>('');
   const [pregunta, setPregunta] = useState('');
   const [opciones, setOpciones] = useState<string[]>([]);
   const [seleccionRealizada, setSeleccionRealizada] = useState(false);
@@ -15,47 +17,63 @@ export const Juego: React.FC<JuegoProps> = () => {
   const MAX_PREGUNTAS = 10;
 
   const fetchData = async () => {
-    if (preguntasRespondidas < MAX_PREGUNTAS) {
-      const response = await fetch('/api/obtener-pregunta-aleatoria');
-      if (!response.ok) {
-        throw new Error('Error al obtener pregunta aleatoria');
+    try {
+      if (preguntasRespondidas < MAX_PREGUNTAS) {
+        const response = await fetch('/api/obtener-pregunta-aleatoria');
+        if (!response.ok) {
+            throw new Error('Error al obtener pregunta aleatoria');
+        }
+
+        const data = await response.json();
+        setIdPregunta(data.id_pregunta);
+        setPregunta(data.pregunta);
+        setOpciones(data.opciones);
+        setRespuestaCorrectaDelServidor(data.respuestaCorrecta);
+      } else {
+        console.log('Fin del juego');
       }
-      const data = await response.json();
-      setIdPregunta(data.id_pregunta);
-      setPregunta(data.pregunta);
-      setOpciones(data.opciones);
-    } else {
-      console.log('Fin del juego');
+    } catch (error) {
+      console.error('Error al obtener la pregunta:', error);
     }
   };
 
   const handleOptionClick = async (opcion?: string) => {
-    if (opcion && !seleccionRealizada) {
-      const response = await fetch("/api/verificar-respuesta", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          idPregunta,
-          opcionSeleccionada: opcion,
-        }),
-      });
+    try {
+      if (opcion) {
+        const response = await fetch("/api/verificar-respuesta", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idPregunta, // Envía el ID de la pregunta
+            opcionSeleccionada: opcion,
+          }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok && data.esCorrecta) {
-        setPuntuacion(prevPuntuacion => prevPuntuacion + 10);
+        if (response.ok) {
+          console.log(data.mensaje);
+          if (data.mensaje.includes('correcta')) {
+            setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
+          }
+        } else {
+          console.error(data.mensaje);
+        }
+
+        setSeleccionRealizada(true);
+        setTimeout(() => {
+          setPreguntasRespondidas((prevPreguntas) => prevPreguntas + 1);
+          setSeleccionRealizada(false); 
+          fetchData(); 
+        }, 2000); 
       }
-
-      setSeleccionRealizada(true);
-      setTimeout(() => {
-        setPreguntasRespondidas(prevPreguntas => prevPreguntas + 1);
-        setSeleccionRealizada(false);
-        fetchData();
-      }, 2000);
+    } catch (error) {
+      console.error("Error al procesar la respuesta:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -70,15 +88,14 @@ export const Juego: React.FC<JuegoProps> = () => {
             key={index}
             option={opcion}
             handleOptionClick={() => handleOptionClick(opcion)}
-            showColors={seleccionRealizada} // Eliminé la línea isCorrect, no es necesaria aquí
+            isCorrect={opcion === respuestaCorrectaDelServidor}
+            showColors={seleccionRealizada}
           />
         ))}
       </div>
       <div className="puntuacion-container">
-        <p>Puntuación: {puntuacion}</p>
+        <p>Puntuaciónn: {puntuacion}</p>
       </div>
     </div>
   );
 };
-
-export default Juego;

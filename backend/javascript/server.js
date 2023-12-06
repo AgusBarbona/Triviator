@@ -159,7 +159,6 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
 app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { idPregunta, opcionSeleccionada } = req.body;
-    console.log(idPregunta, opcionSeleccionada);
     try {
         const username = obtenerNombreDeUsuarioDesdeSesion(req);
         /*if (!username) {
@@ -168,17 +167,14 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
         }*/
         const connection = yield db_1.pool.getConnection();
         const [respuesta] = yield connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
-        console.log(respuesta);
         const respuestaCorrecta = (_a = respuesta[0]) === null || _a === void 0 ? void 0 : _a.respuesta_correcta;
         if (opcionSeleccionada === respuestaCorrecta) {
             const puntosGanados = 10;
-            yield connection.execute('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
-            console.log('Respuesta correcta. Sumar 10 puntos.');
-            res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.' });
+            yield connection.query('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
+            res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.', esCorrecta: true });
         }
         else {
-            console.log('Respuesta incorrecta. No se suman puntos.');
-            res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.' });
+            res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.', esCorrecta: false });
         }
         connection.release();
     }
@@ -188,5 +184,5 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
     }
 }));
 app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}`);
+    console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
