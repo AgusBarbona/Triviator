@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/lab": "^5.0.0-alpha.155",
+    "@mui/material": "^5.14.20",
     "@types/jest": "^29.5.8",
     "@types/node": "^20.9.2",
     "@types/react-countdown-circle-timer": "^2.0.1",
