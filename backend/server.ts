@@ -203,44 +203,41 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 // Ruta para manejar la respuesta del usuario y registrar la puntuación
 app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
   const { idPregunta, opcionSeleccionada } = req.body;
-   console.log(idPregunta, opcionSeleccionada);
 
   try {
-    
     const username = obtenerNombreDeUsuarioDesdeSesion(req);
-
-    /*if (!username) {
+    if (!username) {
       res.status(401).json({ mensaje: 'Usuario no autenticado' });
       return;
-    }*/
+    }
 
     const connection = await pool.getConnection();
+    const [respuesta] = await connection.query(
+      'SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', 
+      [idPregunta]
+    );
 
-
-    const [respuesta] = await connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
-    console.log(respuesta);
-    const respuestaCorrecta = (respuesta as RowDataPacket[])[0]?.respuesta_correcta;
+    const respuestaCorrecta = respuesta[0]?.respuesta_correcta;
 
     if (opcionSeleccionada === respuestaCorrecta) {
       const puntosGanados = 10;
+      await connection.query(
+        'UPDATE users SET points = points + ? WHERE username = ?', 
+        [puntosGanados, username]
+      );
 
-      await connection.execute('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
-
-      console.log('Respuesta correcta. Sumar 10 puntos.');
-      res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.' });
+      res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.', esCorrecta: true });
     } else {
-      console.log('Respuesta incorrecta. No se suman puntos.');
-      res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.' });
+      res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.', esCorrecta: false });
     }
-    connection.release();
 
-  } catch (error: any) {
+    connection.release();
+  } catch (error) {
     console.error('Error al procesar la respuesta del usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
-
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
