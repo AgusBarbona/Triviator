@@ -42,19 +42,20 @@ app.get("/api", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 app.get("/api/v1", (req, res) => {
     res.json({ message: "Hola desde boton" });
 });
-// nueva ruta para el registro de usuarios
+// nueva ruta para el registro de users
 app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, correo, contraseña } = req.body;
+    const { username, email, password } = req.body;
     try {
         const connection = yield db_1.pool.getConnection();
         // Verificar si el usuario ya existe
-        const [existingUsers] = yield connection.execute('SELECT * FROM usuarios WHERE username = ? OR correo = ?', [username, correo]);
+        const [existingUsers] = yield connection.execute('SELECT * FROM users WHERE username = ? OR email = ?', [username, email]);
+        console.log();
         if (Array.isArray(existingUsers) && existingUsers.length > 0) {
-            res.status(400).json({ mensaje: 'El usuario o correo ya están registrados' });
+            res.status(400).json({ mensaje: 'El usuario o email ya están registrados' });
             return;
         }
         // Insertar el nuevo usuario en la base de datos
-        const [result] = yield connection.execute('INSERT INTO usuarios (username, correo, contraseña) VALUES (?, ?, ?)', [username, correo, contraseña]);
+        const [result] = yield connection.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, password]);
         connection.release();
         // Verificar si la inserción fue exitosa
         if (result && 'insertId' in result) {
@@ -97,7 +98,7 @@ app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function*
         // Obtener una conexión del pool
         const connection = yield db_1.pool.getConnection();
         // Realizar la consulta para verificar las credenciales
-        const [rows] = yield connection.execute('SELECT * FROM usuarios WHERE username = ? AND contraseña = ?', [username, password]);
+        const [rows] = yield connection.execute('SELECT * FROM users WHERE username = ? AND password = ?', [username, password]);
         // Liberar la conexión de vuelta al pool
         connection.release();
         if (Array.isArray(rows) && rows.length > 0) {
@@ -156,25 +157,28 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
 }));
 // Ruta para manejar la respuesta del usuario y registrar la puntuación
 app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { opcionSeleccionada, respuestaCorrecta } = req.body;
+    var _a;
+    const { idPregunta, opcionSeleccionada } = req.body;
+    console.log(idPregunta, opcionSeleccionada);
     try {
         const username = obtenerNombreDeUsuarioDesdeSesion(req);
-        if (!username) {
-            res.status(401).json({ mensaje: 'Usuario no autenticado' });
-            return;
-        }
+        /*if (!username) {
+          res.status(401).json({ mensaje: 'Usuario no autenticado' });
+          return;
+        }*/
         const connection = yield db_1.pool.getConnection();
+        const [respuesta] = yield connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
+        console.log(respuesta);
+        const respuestaCorrecta = (_a = respuesta[0]) === null || _a === void 0 ? void 0 : _a.respuesta_correcta;
         if (opcionSeleccionada === respuestaCorrecta) {
-            const puntosGanados = 500;
-            yield connection.execute('UPDATE usuarios SET puntos = puntos + ? WHERE username = ?', [puntosGanados, username]);
-            console.log('Respuesta correcta. Sumar 500 puntos.');
-            res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 500 puntos.' });
+            const puntosGanados = 10;
+            yield connection.execute('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
+            console.log('Respuesta correcta. Sumar 10 puntos.');
+            res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.' });
         }
         else {
-            const puntosPerdidos = 200;
-            yield connection.execute('UPDATE usuarios SET puntos = puntos - ? WHERE username = ?', [puntosPerdidos, username]);
-            console.log('Respuesta incorrecta. Restar 200 puntos.');
-            res.status(200).json({ mensaje: 'Respuesta incorrecta. Restar 200 puntos.' });
+            console.log('Respuesta incorrecta. No se suman puntos.');
+            res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.' });
         }
         connection.release();
     }

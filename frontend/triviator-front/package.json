@@ -20,6 +20,7 @@
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
+    "react-spinners": "^0.13.8",
     "sass": "^1.69.5"
   },
   "devDependencies": {

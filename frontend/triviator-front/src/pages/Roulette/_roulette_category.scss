@@ -265,3 +265,12 @@ $color-background: #9CD9E7;
     box-shadow: 40vmin 0 5.178558514273422vmin currentColor;
 }
 
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    height: 100vh; // Ajusta esto según tus necesidades
+  }
+
+

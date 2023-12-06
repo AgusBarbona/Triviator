@@ -1,4 +1,4 @@
-/*CREATE DATABASE  IF NOT EXISTS `triviator` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `triviator` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `triviator`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
@@ -73,30 +73,30 @@ INSERT INTO `preguntas` VALUES (1,1,'En la película de Disney \"El Rey León\",
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarios` (
-  `id_usuario` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `contraseña` varchar(20) NOT NULL,
-  `puntos` int DEFAULT '0',
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `email` varchar(45) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
+  `points` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'usuario_prueba','prueba@example.com','contraseña_prueba',0),(2,'flor15','pereyraramosflorencia@gmail.com','1234',0),(3,'prueba2','prueba2@gmail.com','12345',0),(4,'prueba3','hola@gmai.com','12345',0);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'usuario_prueba','prueba@example.com','contraseña_prueba',0),(2,'flor15','pereyraramosflorencia@gmail.com','1234',0),(3,'prueba2','prueba2@gmail.com','12345',0),(4,'prueba3','hola@gmai.com','12345',0),(5,'hola2','hola2@gmail.com','12345',0),(6,'hola21','hola21@gmail.com','12345',NULL),(7,'usuario_prueba2','pereyraramosflorenciacamila2@gmail.com','1234',NULL),(8,'gato','gato@gmail.com','12345',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -108,5 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-04 17:58:46
-*/
+-- Dump completed on 2023-12-05 11:12:35
