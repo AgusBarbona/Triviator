@@ -37,3 +37,11 @@ $color-background: #9CD9E7;
     padding:5rem 2rem 1rem 0rem;
 }
 
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    height: 100vh; // Ajusta esto según tus necesidades
+  }
+
