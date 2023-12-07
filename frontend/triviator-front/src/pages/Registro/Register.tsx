@@ -16,8 +16,13 @@ const Register: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (!username || !email || !password) {
-      setError('Por favor ingrese un usuario, email y contraseña válidos.');
+    if (username.length < 3 || username.length > 22) {
+      setError('El nombre de usuario debe tener entre 3 y 22 caracteres.');
+      return;
+    }
+
+    if (!email || !password) {
+      setError('Por favor ingrese un  email y contraseña válidos.');
       return;
     }
 

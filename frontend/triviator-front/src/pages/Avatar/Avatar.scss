@@ -1,98 +1,119 @@
-@import '../../styles/var' ;
+@import '../../styles/var';
 
 .avatar-header {
-    background-color: #BC7AF9; // Dark green background as seen in the header of the image
-    color: #FFFFFF; 
-    font-weight: bold;// White text color
-    font-size: 2.3em; // Large font size for the header text
-    padding: 15px 0; // Padding above and below the header text
-    width: 100%; // Header spans the full width
-    text-align: center;
-    position: fixed; // Fixed at the top
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10; // Above the other content
+  background-color: #BC7AF9;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 2.3em;
+  padding: 15px 0;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .avatar-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #C5F4A8; // Light green background color as seen in the image
-    font-family: $font-family;
-    font-weight: bold;
-    min-height: 100vh; // Minimum height of the viewport
-    width: 100%; // Ensures the wrapper takes the full width
-    padding-top: 60px; // Space for the fixed header
-    box-sizing: border-box; // Ensures padding is included in the height calculation
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #C5F4A8;
+  font-family: $font-family;
+  font-weight: bold;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 60px; // Compensar la altura del header fijo
+  box-sizing: border-box;
 }
-
 
 .avatar-subtitle {
-    color: #000000; 
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-top: 70px; 
-    text-align: center;
+  color: #000000;
+  font-size: 1.5em;
+  margin-top: 70px; 
+  text-align: center;
 }
+
 .avatar-content {
-    border-radius: 10px; // Rounded corners as seen in the image
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px; // Padding inside the content box
-    margin-top: 20px; // Additional space from the subtitle
-    width: 80%; // Occupying 80% of the wrapper width
-    max-width: 500px; // Maximum width
-    box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 500px;
+  box-sizing: border-box;
 }
 
 .avatar-name-input {
-    width: 100%; // Full width of the content area
-    position: relative;
-    margin-bottom: 20px; // Space below the input area
-input {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+  
+  input {
     color: #76269B;
     font-weight: bold;
-    width: 100%; // Full width of the name input area
-    padding: 10px 0px 10px 10px; // Padding inside the input
-    border: 2px solid #FFFFFF; // White border as seen in the image
-    border-radius: 5px; // Slightly rounded corners of the input
-    font-size: 1.2rem; // Font size of the input text
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #FFFFFF;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    
     &:focus {
-    outline: none; // Removing the outline on focus
+      outline: none;
     }
+  }
 }
 
-.character-count {
-    position: absolute;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    right: 10px;
-    bottom: 9px;
-    background-color: #7CB342; // Dark green background as seen in the image
-    color: #FFFFFF; // White text color
-    padding: 5px; // Padding inside the character count
-    border-radius: 5px; // Rounded corners as seen in the image
-    }
+.avatar-selection {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 120px;
 }
-.popcorn-image{
-    width: 350px;
-    height: 350px;
-    margin: 6rem 49rem -35rem 2rem; 
-    padding:5rem 2rem 1rem 0rem;
+
+.avatar-option {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  
+
+  
+  img {
+    width: 100px; // Ajusta esto según el tamaño deseado de tus avatares
+    height: auto; // Esto mantendrá la relación de aspecto de la imagen
+    border-radius: 50px;
+  }
+  
+  &.selected {
+    border: 3px solid blue; // Asegúrate de que este color sea visible contra el fondo
+    border-radius: 50px; // Si tus imágenes ya tienen border-radius, el borde también lo seguirá
+    box-sizing: border-box;
+  }
+}
+
+.popcorn-image {
+  width: 350px;
+  height: 350px;
+  margin: 6rem 49rem -35rem 2rem;
+  padding: 5rem 2rem 1rem 0rem;
 }
 
 .ready-button {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    background-color: #76269B; // Dark green background as seen on the button in the image
-    color: #FFFFFF; // White text color
-    border: none; // No border
-    border-radius: 5px; // Rounded corners as seen in the image
-    padding: 10px 20px; // Padding inside the button
-    font-size: 1.5rem; // Font size of the button text
-    cursor: pointer; // Cursor changes to pointer to indicate it's clickable
-    &:hover {
-    background-color: darken(#689F38, 10%); // Darkens the button on hover
-    }
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #76269B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: darken(#76269B, 10%);
+  }
 }
