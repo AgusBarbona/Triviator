@@ -220,11 +220,17 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
     const respuestaCorrecta = (respuesta as RowDataPacket[])[0]?.respuesta_correcta;
 
     if (opcionSeleccionada === respuestaCorrecta) {
-      const puntosGanados = 10;
+      
       await connection.query(
-        'UPDATE users SET points = points + ? WHERE username = ?', 
-        [puntosGanados, username]
+        'UPDATE users SET points = points + 10 WHERE username = ?', 
+        [username]
       );
+    
+      res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.', esCorrecta: true });
+    } else {
+      res.status(200).json({ mensaje: 'Respuesta incorrecta. No se suman puntos.', esCorrecta: false });
+    }
+    
 
       res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.', esCorrecta: true });
     } else {
