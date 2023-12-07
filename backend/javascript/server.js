@@ -85,11 +85,6 @@ const verificaToken = (req, res, next) => {
         return res.status(403).json({ mensaje: 'Token no válido' });
     }
 };
-// Rutas protegidas
-app.get('/api/ruta-protegida', verificaToken, (req, res) => {
-    const username = req.body.username;
-    res.json({ mensaje: 'Ruta protegida', username });
-});
 // nueva ruta para manejar el inicio de sesión
 app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
@@ -169,8 +164,7 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
         const [respuesta] = yield connection.query('SELECT respuesta_correcta FROM preguntas WHERE id_pregunta = ?', [idPregunta]);
         const respuestaCorrecta = (_a = respuesta[0]) === null || _a === void 0 ? void 0 : _a.respuesta_correcta;
         if (opcionSeleccionada === respuestaCorrecta) {
-            const puntosGanados = 10;
-            yield connection.query('UPDATE users SET points = points + ? WHERE username = ?', [puntosGanados, username]);
+            yield connection.query('UPDATE users SET points = points + 10 WHERE username = ?', [username]);
             res.status(200).json({ mensaje: 'Respuesta correcta. Sumar 10 puntos.', esCorrecta: true });
         }
         else {
