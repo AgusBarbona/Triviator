@@ -99,13 +99,6 @@ const verificaToken = (
 };
 
 
-// Rutas protegidas
-app.get('/api/ruta-protegida', verificaToken, (req: Request, res: Response) => {
-  const username = (req as any).body.username;
-  res.json({ mensaje: 'Ruta protegida', username });
-});
-
-
 // nueva ruta para manejar el inicio de sesión
 
 app.post('/api/login', async (req: Request, res: Response) => {
