@@ -85,6 +85,7 @@ CREATE TABLE `users` (
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `points` int DEFAULT NULL,
+  `avatar` VARCHAR(255) DEFAULT NULL, 
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -95,7 +96,15 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'usuario_prueba','prueba@example.com','contraseña_prueba',0),(2,'flor15','pereyraramosflorencia@gmail.com','1234',0),(3,'prueba2','prueba2@gmail.com','12345',0),(4,'prueba3','hola@gmai.com','12345',0),(5,'hola2','hola2@gmail.com','12345',0),(6,'hola21','hola21@gmail.com','12345',NULL),(7,'usuario_prueba2','pereyraramosflorenciacamila2@gmail.com','1234',NULL),(8,'gato','gato@gmail.com','12345',NULL);
+INSERT INTO `users` (`username`, `email`, `password`, `points`, `avatar`) VALUES 
+('usuario_prueba', 'prueba@example.com', 'contraseña_prueba', 0, NULL),
+('flor15', 'pereyraramosflorencia@gmail.com', '1234', 0, NULL),
+('prueba2', 'prueba2@gmail.com', '12345', 0, NULL),
+('prueba3', 'hola@gmai.com', '12345', 0, NULL),
+('hola2', 'hola2@gmail.com', '12345', 0, NULL),
+('hola21', 'hola21@gmail.com', '12345', NULL, NULL),
+('usuario_prueba2', 'pereyraramosflorenciacamila2@gmail.com', '1234', NULL, NULL),
+('gato', 'gato@gmail.com', '12345', NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

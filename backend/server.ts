@@ -8,6 +8,29 @@ import { RowDataPacket } from 'mysql2';
 // Definición de tipo para el payload del token
 interface TokenPayload {
   username: string;
+  avatar: string;
+}
+
+interface AvatarUpdateRequest extends Request {
+  body: {
+    username: string;
+    avatar: string;
+  };
+}
+function verificaToken(req: Request, res: Response, next: Function) {
+  const token = req.headers.authorization?.split(' ')[1] || req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    req.body.username = decoded.username;
+    next();
+  } catch (error) {
+    return res.status(403).json({ mensaje: 'Token no válido' });
+  }
 }
 
 const port: number = parseInt (process.env.PORT || '3000', 10);
@@ -78,25 +101,25 @@ app.post('/api/registro', async (req: Request, res: Response) => {
 });
 
 // middleware para verificar el token
-const verificaToken = (
-  req: Request<any, any, { username?: string }>,
-  res: Response,
-  next: Function
-) => {
-  const token = req.headers.authorization;
+//const verificaToken = (
+  //req: Request<any, any, { username?: string }>,
+  //res: Response,
+  //next: Function
+//) => {
+  //const token = req.headers.authorization;
 
-  if (!token) {
-    return res.status(401).json({ mensaje: 'Token no proporcionado' });
-  }
+  //if (!token) {
+    //return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  //}
 
-  try {
-    const decoded = jwt.verify(token, secretKey) as TokenPayload;
-    req.body = { ...req.body, username: decoded.username };
-    next();
-  } catch (error) {
-    return res.status(403).json({ mensaje: 'Token no válido' });
-  }
-};
+  //try {
+    //const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    //req.body = { ...req.body, username: decoded.username };
+    //next();
+  //} catch (error) {
+    //return res.status(403).json({ mensaje: 'Token no válido' });
+  //}
+//};
 
 
 // nueva ruta para manejar el inicio de sesión
@@ -235,9 +258,10 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
 
   try {
     const connection = await pool.getConnection();
-
-    const [result] = await connection.execute('UPDATE users SET avatar = ? WHERE username = ?', [avatar, username]);
-
+    const [result] = await connection.execute(
+      'UPDATE users SET avatar = ? WHERE username = ?',
+      [avatar, username]
+    );
     connection.release();
 
     if (result && 'affectedRows' in result && result.affectedRows > 0) {
@@ -250,6 +274,7 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
+
 
 app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
   const username = obtenerNombreDeUsuarioDesdeSesion(req);

@@ -1,17 +1,17 @@
 @import '../../styles/var';
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap');
 
-$color-primary: #BC7AF9; // Morado para el fondo del encabezado
-$color-secondary: #BC7AF9; // Morado claro para el fondo del menú desplegable
+$color-primary: #BC7AF9; //  fondo del encabezado
+$color-secondary: #BC7AF9; //  fondo del menú desplegable
 $color-text: white; // Blanco para el texto
-$color-button: #76269B; // Morado para los botones
+$color-button: #76269B; // botones
 $color-button-hover: #9CD9E7; // Color al pasar el mouse sobre los botones
 $color-shadow-hover: rgba(0, 0, 0, 0.2); // Sombra al pasar el mouse sobre los botones
 $avatar-size: 90px; // Tamaño del avatar
 $dropdown-width: 50vw; // El menú desplegable cubre la mitad del ancho de la ventana
 
 .site-header {
-  background-color: $color-primary;
+  background-image: radial-gradient(circle, $color-primary, $color-button); 
   padding: 1rem;
   text-align: center;
   position: fixed;
@@ -24,6 +24,7 @@ $dropdown-width: 50vw; // El menú desplegable cubre la mitad del ancho de la ve
     position: relative;
     color: $color-text;
   }
+
 
   .menu-icon {
     position: absolute;

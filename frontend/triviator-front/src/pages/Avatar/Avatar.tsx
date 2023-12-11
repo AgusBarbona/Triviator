@@ -7,6 +7,10 @@ const Avatar = () => {
   const navigate = useNavigate();
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
 
+  
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
+
   const avatars = [
     { name: 'Elfo', image: '/avatares/elfo.png' },
     { name: 'Mago', image: '/avatares/magical.png' },
@@ -21,25 +25,27 @@ const Avatar = () => {
   const handleButtonClick = async () => {
     if (!selectedAvatar) {
       alert('Por favor, selecciona un avatar');
-    } else {
-      try {
-        const response = await fetch('/api/actualizar-avatar', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ avatar: selectedAvatar }),
-        });
+      return;
+    }
 
-        if (response.ok) {
-          navigate('/RuletaCategoria', { state: { avatar: selectedAvatar } });
-        } else {
-          alert('Error al actualizar el avatar');
-        }
-      } catch (error) {
-        alert('Error al enviar la solicitud');
-        console.error('Error al enviar la solicitud', error);
+    try {
+      const response = await fetch('/api/actualizar-avatar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ avatar: selectedAvatar, username })
+      });
+
+      if (response.ok) {
+        navigate('/RuletaCategoria', { state: { avatar: selectedAvatar } });
+      } else {
+        alert('Error al actualizar el avatar');
       }
+    } catch (error) {
+      alert('Error al enviar la solicitud');
+      console.error('Error al enviar la solicitud', error);
     }
   };
 
@@ -68,5 +74,6 @@ const Avatar = () => {
     </div>
   );
 };
+
 
 export default Avatar;
