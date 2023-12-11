@@ -1,10 +1,25 @@
 @import '../../styles/var';
 
+$color-header-background: #BC7AF9;
+$color-wrapper-background: #C5F4A8;
+$color-text: #FFFFFF;
+$color-input: #76269B;
+$color-button-background: #76269B;
+$color-avatar-border: #76269B;
+$color-avatar-shadow: rgba(0, 0, 0, 0.3);
+$font-size-large: 2.3em;
+$font-size-medium: 1.5em;
+$font-size-small: 1.2rem;
+$avatar-size: 100px;
+$button-border-radius: 5px;
+$avatar-border-radius: 50%;
+$transition-speed: 0.3s;
+
 .avatar-header {
-  background-color: #BC7AF9;
-  color: #FFFFFF;
+  background-color: $color-header-background;
+  color: $color-text;
   font-weight: bold;
-  font-size: 2.3em;
+  font-size: $font-size-large;
   padding: 15px 0;
   width: 100%;
   text-align: center;
@@ -19,59 +34,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #C5F4A8;
+  background-color: $color-wrapper-background;
   font-family: $font-family;
   font-weight: bold;
   min-height: 100vh;
   width: 100%;
-  padding-top: 60px; // Compensar la altura del header fijo
+  padding-top: 60px;
   box-sizing: border-box;
 }
 
 .avatar-subtitle {
   color: #000000;
-  font-size: 1.5em;
-  margin-top: 70px; 
+  font-size: $font-size-medium;
+  margin-top: 70px;
   text-align: center;
-}
-
-.avatar-content {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  margin-top: 20px;
-  width: 80%;
-  max-width: 500px;
-  box-sizing: border-box;
-}
-
-.avatar-name-input {
-  width: 100%;
-  position: relative;
-  margin-bottom: 20px;
-  
-  input {
-    color: #76269B;
-    font-weight: bold;
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #FFFFFF;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 .avatar-selection {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  padding: 120px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .avatar-option {
@@ -80,22 +64,26 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
-  
 
-  
   img {
-    width: 100px; // Ajusta esto según el tamaño deseado de tus avatares
-    height: auto; // Esto mantendrá la relación de aspecto de la imagen
-    border-radius: 50px;
+    width: $avatar-size;
+    height: auto;
+    border-radius: $avatar-border-radius;
+    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px $color-avatar-shadow;
+    }
   }
-  
+
   &.selected {
-    border: 3px solid blue; // Asegúrate de que este color sea visible contra el fondo
-    border-radius: 50px; // Si tus imágenes ya tienen border-radius, el borde también lo seguirá
-    box-sizing: border-box;
+    img {
+      border: 3px solid $color-avatar-border;
+      box-shadow: 0 5px 15px $color-avatar-shadow;
+    }
   }
 }
-
 .popcorn-image {
   width: 350px;
   height: 350px;
@@ -105,15 +93,15 @@
 
 .ready-button {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: #76269B;
-  color: #FFFFFF;
+  background-color: $color-button-background;
+  color: $color-text;
   border: none;
-  border-radius: 5px;
+  border-radius: $button-border-radius;
   padding: 10px 20px;
-  font-size: 1.5rem;
+  font-size: $font-size-medium;
   cursor: pointer;
   
   &:hover {
-    background-color: darken(#76269B, 10%);
+    background-color: darken($color-button-background, 10%);
   }
 }

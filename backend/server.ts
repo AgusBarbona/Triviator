@@ -229,6 +229,28 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
+// Ruta para actualizar el avatar del usuario
+app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Response) => {
+  const { username, avatar } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+
+    const [result] = await connection.execute('UPDATE users SET avatar = ? WHERE username = ?', [avatar, username]);
+
+    connection.release();
+
+    if (result && 'affectedRows' in result && result.affectedRows > 0) {
+      res.status(200).json({ mensaje: 'Avatar actualizado correctamente' });
+    } else {
+      res.status(400).json({ mensaje: 'No se pudo actualizar el avatar' });
+    }
+  } catch (error) {
+    console.error('Error al actualizar avatar:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
