@@ -3,6 +3,7 @@ $color-background: #9CD9E7;
 
 .Categoria {
     display: flex;
+    margin-top: 1rem;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -17,12 +18,13 @@ $color-background: #9CD9E7;
 
 .ruleta-container {
     position: relative;
-    z-index: 1;
+    z-index: -50;
     display: flex;
     flex-direction: column;
     align-items: center;
-    //justify-content: center;
-    padding: 2% 0%;
+    margin-top: 100px;
+    //sjustify-content: center;
+    //padding: 40px;
     width: 100%; 
     min-height: 100vh;
     max-width: 1400px;
@@ -31,6 +33,7 @@ $color-background: #9CD9E7;
         height: 350px;
         margin: -25rem 60em -4.5em 1rem;
         padding:5rem 2rem 1rem 0rem;
+        z-index: 2;
     }
     
 }
@@ -39,6 +42,7 @@ $color-background: #9CD9E7;
     height: 180px;
     margin: -32rem 55em -4.5em 1rem;
     padding:5rem 2rem 1rem 0rem;
+    z-index: 50;
 }
 
 

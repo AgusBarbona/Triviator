@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import Header from '../../components/header/Header';
 import '../Avatar/Avatar.scss';
 
 const Avatar = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
 
   const avatars = [
@@ -43,24 +44,27 @@ const Avatar = () => {
   };
 
   return (
-    <div className="avatar-wrapper">
-      <div className="avatar-header">Bienvenid@ a Triviator</div>
-      <img
-        src="../../public/recursos/celebrando-removebg-preview (1).png"
-        alt="Popcorn Character"
-        className="popcorn-image"
-      />
-      <div className="avatar-subtitle">¿Cómo te quieres llamar?</div>
-      <div className="avatar-selection">
-        {avatars.map((avatar, index) => (
-          <div key={index} className={`avatar-option ${selectedAvatar === avatar.image ? 'selected' : ''}`} onClick={() => handleAvatarClick(avatar.image)}>
-            <img src={avatar.image} alt={avatar.name} />
-          </div>
-        ))}
+    <div>
+      <Header /> 
+      <div className="avatar-wrapper">
+        
+        <img
+          src="../../public/recursos/celebrando-removebg-preview (1).png"
+          alt="Popcorn Character"
+          className="popcorn-image"
+        />
+        <div className="avatar-subtitle">¿Cómo Te Querés Ver?</div>
+        <div className="avatar-selection">
+          {avatars.map((avatar, index) => (
+            <div key={index} className={`avatar-option ${selectedAvatar === avatar.image ? 'selected' : ''}`} onClick={() => handleAvatarClick(avatar.image)}>
+              <img src={avatar.image} alt={avatar.name} />
+            </div>
+          ))}
+        </div>
+        <button className="ready-button" onClick={handleButtonClick}>
+          Listo
+        </button>
       </div>
-      <button className="ready-button" onClick={handleButtonClick}>
-        Listo
-      </button>
     </div>
   );
 };

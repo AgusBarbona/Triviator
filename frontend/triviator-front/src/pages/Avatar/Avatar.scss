@@ -15,20 +15,7 @@ $button-border-radius: 5px;
 $avatar-border-radius: 50%;
 $transition-speed: 0.3s;
 
-.avatar-header {
-  background-color: $color-header-background;
-  color: $color-text;
-  font-weight: bold;
-  font-size: $font-size-large;
-  padding: 15px 0;
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
+
 
 .avatar-wrapper {
   display: flex;
@@ -37,16 +24,17 @@ $transition-speed: 0.3s;
   background-color: $color-wrapper-background;
   font-family: $font-family;
   font-weight: bold;
-  min-height: 100vh;
+  min-height: 100vh; /* Establece la altura mínima para abarcar toda la ventana */
   width: 100%;
   padding-top: 60px;
   box-sizing: border-box;
+  overflow: hidden; /* Evita desbordamiento */
 }
 
 .avatar-subtitle {
   color: #000000;
   font-size: $font-size-medium;
-  margin-top: 70px;
+  margin-top: 90px;
   text-align: center;
 }
 
@@ -85,8 +73,8 @@ $transition-speed: 0.3s;
   }
 }
 .popcorn-image {
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   margin: 6rem 49rem -35rem 2rem;
   padding: 5rem 2rem 1rem 0rem;
 }

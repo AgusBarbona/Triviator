@@ -40,7 +40,8 @@ function App() {
         <Route path="/loser/" element={<LoserPage/>}/>
         <Route path="/PaginaJuego/" element={<PaginaJuego/>}/>
         <Route path='/RuletaCategoria' element={<RuletaCategoria/>}/>
-        <Route path='/disneycategory' element={<DisneyCategory/>}/>
+        <Route path='/disneycategory' element={<DisneyCategory/>}/> 
+
 
       </Routes>
     </BrowserRouter> 

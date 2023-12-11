@@ -251,6 +251,29 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
   }
 });
 
+app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
+  const username = obtenerNombreDeUsuarioDesdeSesion(req);
+  if (username) {
+    try {
+      const connection = await pool.getConnection();
+      const [rows] = await connection.execute('SELECT username, avatar FROM users WHERE username = ?', [username]);
+
+      if (rows.length > 0) {
+        const user = rows[0];
+        res.json(user);
+      } else {
+        res.status(404).json({ mensaje: 'Usuario no encontrado' });
+      }
+
+      connection.release();
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+      res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+  } else {
+    res.status(401).json({ mensaje: 'Usuario no autenticado' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
