@@ -1,0 +1,72 @@
+body {
+    margin: 0}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Creates a responsive grid with a minimum column width of 300px
+    gap: 90px; // Adjust the gap between cards as needed
+    padding: 100px;
+    margin: 0 auto; // Centers the container if needed
+    justify-content: center;
+    max-width: 1200px; // Adjust the max-width as needed to center the grid within the page
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.6s;
+    margin-bottom: 20px; // Adds space between rows of cards
+  
+    &:last-child {
+      margin-bottom: 0; // Removes the margin from the last row of cards
+    }
+  
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  .card-inner {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    min-height: 200px; // Set a minimum height for the cards
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; // Stack children vertically
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden; // Prevent content from spilling out
+  }
+  
+  .card-front {
+    background-color: #fff;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .card-back {
+    background-color: #4CAF50; // Use the green color from your design
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 16px;
+    text-align: left;
+    padding: 20px;
+    overflow: auto; // Allow scrolling for overflow content
+  }
+  
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
