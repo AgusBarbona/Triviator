@@ -21,7 +21,19 @@ export const RuletaCategoria = () => {
       <div className="Categoria">
         {loading ? (
           <div className="loading-spinner">
-            <PropagateLoader color={"#36D7B7"} style={{ width: "150px", height: "150px", margin: "auto" }} />
+          <div style={{ 
+            backgroundColor: "white", 
+            position: "fixed", 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center"
+          }}>
+            <PropagateLoader color={"#36D7B7"} />
+          </div>
           </div>
         ) : (
           <div className="background">

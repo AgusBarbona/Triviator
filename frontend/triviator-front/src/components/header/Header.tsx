@@ -50,14 +50,14 @@ const Header = () => {
   };
 
   const goToAbout = () => {
-    navigate('/About'); // Redirige al componente Sobre Nosotros
+    navigate('/AboutUs'); // Redirige al componente Sobre Nosotros
     setIsDropdownVisible(false); 
   };
 
   return (
     <header className="site-header">
       <div className="header-content">
-        <h1>Triviator</h1>
+        <h1>TRIVIATOR</h1>
         <button onClick={toggleDropdown} className="menu-icon">
           
         </button>
@@ -66,8 +66,8 @@ const Header = () => {
         <div className="dropdown-menu visible">
           <button onClick={toggleDropdown} className="close-icon">X</button>
           <div className="user-info">
-            <img src={user.avatar || 'default-avatar.png'} alt="User Avatar" />
-            <span>{user.username}</span>
+            <img src={'../../../public/avatares/pirataa.png'|| user.avatar} alt="User Avatar" />
+            <span>{"agus13" ||user.username}</span>
           </div>
           <nav>
             <button onClick={goToPlay} className="nav-button">Jugar</button>
