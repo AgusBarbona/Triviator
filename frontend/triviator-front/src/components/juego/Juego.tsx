@@ -2,7 +2,7 @@ import "./_juego.scss";
 import QuestionBox from "./QuestionBox";
 import OptionBox from "./OptionBox";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 interface JuegoProps {}
 
@@ -10,11 +10,13 @@ export const Juego: React.FC<JuegoProps> = () => {
   const [respuestaCorrectaDelServidor, setRespuestaCorrectaDelServidor] = useState<string>('');
   const [pregunta, setPregunta] = useState('');
   const [opciones, setOpciones] = useState<string[]>([]);
+  const [urlImagen, setUrlImagen] = useState<string>('');
   const [seleccionRealizada, setSeleccionRealizada] = useState(false);
   const [preguntasRespondidas, setPreguntasRespondidas] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
   const [idPregunta, setIdPregunta] = useState<number>(0);
-  const MAX_PREGUNTAS = 10;
+  const navigate = useNavigate();
+  const MAX_PREGUNTAS = 9;
 
   const fetchData = async () => {
     try {
@@ -23,12 +25,14 @@ export const Juego: React.FC<JuegoProps> = () => {
         if (!response.ok) {
             throw new Error('Error al obtener pregunta aleatoria');
         }
-
+        console.log(response); 
         const data = await response.json();
+        console.log('Datos recibidos del servidor:', data);
         setIdPregunta(data.id_pregunta);
         setPregunta(data.pregunta);
         setOpciones(data.opciones);
         setRespuestaCorrectaDelServidor(data.respuestaCorrecta);
+        setUrlImagen(data.urlImagen);
       } else {
         console.log('Fin del juego');
       }
@@ -64,9 +68,26 @@ export const Juego: React.FC<JuegoProps> = () => {
         }
 
         setSeleccionRealizada(true);
+
+        /* 
+
+        Calculo de porcentaje ganador o perdedor 
+        
+        */
+       
         setTimeout(() => {
           setPreguntasRespondidas((prevPreguntas) => prevPreguntas + 1);
-          setSeleccionRealizada(false); 
+          setSeleccionRealizada(false);
+
+          // Verificar si se alcanzo el 70% de respuestas correctas
+          const porcentajeCorrectas = (puntuacion / MAX_PREGUNTAS / 10) * 100;
+
+          if (porcentajeCorrectas >= 70) {
+            navigate('/winner');
+          } else if (preguntasRespondidas >= MAX_PREGUNTAS) {
+            navigate('/loser');
+          }
+
           fetchData(); 
         }, 2000); 
       }
@@ -82,7 +103,9 @@ export const Juego: React.FC<JuegoProps> = () => {
 
   return (
     <div className="juego-container">
-      <QuestionBox question={pregunta} />
+      
+      <QuestionBox question={pregunta} urlImagen={urlImagen} />
+      
       <div className="options-container">
         {opciones.map((opcion, index) => (
           <OptionBox
