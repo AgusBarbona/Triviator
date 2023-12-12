@@ -17,6 +17,21 @@ const app = (0, express_1.default)();
 const db_1 = require("./app/models/db");
 const cors_1 = __importDefault(require("cors"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+function verificaToken(req, res, next) {
+    var _a;
+    const token = ((_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1]) || req.headers.authorization;
+    if (!token) {
+        return res.status(401).json({ mensaje: 'Token no proporcionado' });
+    }
+    try {
+        const decoded = jsonwebtoken_1.default.verify(token, secretKey);
+        req.body.username = decoded.username;
+        next();
+    }
+    catch (error) {
+        return res.status(403).json({ mensaje: 'Token no válido' });
+    }
+}
 const port = parseInt(process.env.PORT || '3000', 10);
 const secretKey = 'triviatorProyecto2023';
 app.use(express_1.default.json());
@@ -71,20 +86,23 @@ app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 }));
 // middleware para verificar el token
-const verificaToken = (req, res, next) => {
-    const token = req.headers.authorization;
-    if (!token) {
-        return res.status(401).json({ mensaje: 'Token no proporcionado' });
-    }
-    try {
-        const decoded = jsonwebtoken_1.default.verify(token, secretKey);
-        req.body = Object.assign(Object.assign({}, req.body), { username: decoded.username });
-        next();
-    }
-    catch (error) {
-        return res.status(403).json({ mensaje: 'Token no válido' });
-    }
-};
+//const verificaToken = (
+//req: Request<any, any, { username?: string }>,
+//res: Response,
+//next: Function
+//) => {
+//const token = req.headers.authorization;
+//if (!token) {
+//return res.status(401).json({ mensaje: 'Token no proporcionado' });
+//}
+//try {
+//const decoded = jwt.verify(token, secretKey) as TokenPayload;
+//req.body = { ...req.body, username: decoded.username };
+//next();
+//} catch (error) {
+//return res.status(403).json({ mensaje: 'Token no válido' });
+//}
+//};
 // nueva ruta para manejar el inicio de sesión
 app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
@@ -177,6 +195,48 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
+// Ruta para actualizar el avatar del usuario
+app.post('/api/actualizar-avatar', verificaToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, avatar } = req.body;
+    try {
+        const connection = yield db_1.pool.getConnection();
+        const [result] = yield connection.execute('UPDATE users SET avatar = ? WHERE username = ?', [avatar, username]);
+        connection.release();
+        if (result && 'affectedRows' in result && result.affectedRows > 0) {
+            res.status(200).json({ mensaje: 'Avatar actualizado correctamente' });
+        }
+        else {
+            res.status(400).json({ mensaje: 'No se pudo actualizar el avatar' });
+        }
+    }
+    catch (error) {
+        console.error('Error al actualizar avatar:', error);
+        res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+}));
+/*app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
+  const username = obtenerNombreDeUsuarioDesdeSesion(req);
+  if (username) {
+    try {
+      const connection = await pool.getConnection();
+      const [rows] = await connection.execute('SELECT username, avatar FROM users WHERE username = ?', [username]);
+
+      if (rows.length > 0) {
+        const user = rows[0];
+        res.json(user);
+      } else {
+        res.status(404).json({ mensaje: 'Usuario no encontrado' });
+      }
+
+      connection.release();
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+      res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+  } else {
+    res.status(401).json({ mensaje: 'Usuario no autenticado' });
+  }
+});*/
 app.listen(port, () => {
     console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
