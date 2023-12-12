@@ -10,28 +10,37 @@ body, html {
   overflow: hidden;
 }
 
-/* Establece un mínimo de altura para asegurarte de que el contenido se ajuste */
+
 body {
   min-height: 100%;
   display: flex;
-  background-image: url('../../../public/recursos/fondojuego.png');
+  background-image: url('../../../public/fondojuego.png');
   flex-direction: column;
   justify-content: space-between; 
-}
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center center; 
+  font-family: 'Merriweather Sans', sans-serif;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center; 
 
+}
 .juego-container {
   width: 100%;
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  background-size: 100% auto; 
+  background-size: 100% auto;
   background-repeat: repeat-y;
-  padding: 10px; 
-  box-sizing: border-box; 
+  padding: 5px;
+  box-sizing: border-box;
+  margin-top: -3%; 
 }
-
   .question-box {
     background: radial-gradient(circle, #B01111, #660000);
     padding: 20px;

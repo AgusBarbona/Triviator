@@ -6,6 +6,7 @@ import Register from './pages/Registro/Register';
 import LoginPage from './pages/Login/LoginPage';
 import Avatar from './pages/Avatar/Avatar';
 import PaginaJuego from './pages/GamePage/PaginaJuego';
+import AboutUs from './pages/AboutUs/AboutUs';
 import DisneyCategory from './pages/DisneyCategory/DisneyCategory';
 import  {RuletaCategoria}  from './pages/Roulette/RuletaCategoria';
 import { useState } from 'react';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/avatar/" element={< Avatar/>}/>
         <Route path="/winner/" element={< WinnerPage/>}/>
         <Route path="/loser/" element={<LoserPage/>}/>
+        <Route path="/AboutUs/" element={<AboutUs/>}/>
         <Route path="/PaginaJuego/" element={<PaginaJuego/>}/>
         <Route path='/RuletaCategoria' element={<RuletaCategoria/>}/>
         <Route path='/disneycategory' element={<DisneyCategory/>}/> 

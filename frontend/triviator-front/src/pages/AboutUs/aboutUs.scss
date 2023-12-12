@@ -1,0 +1,123 @@
+@import '../../styles/var';
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap');
+
+
+
+.welcome {
+  text-align: center;
+  font-style: italic;
+  font-weight: 700;
+}
+.about-page {
+  background-image: url('../../../public/recursos/fondoaboutUs.png');
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center center; 
+  font-family: 'Merriweather Sans', sans-serif;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 80px;
+  padding: 80px;
+  margin: 0 auto 150px; 
+  max-width: 1200px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s;
+  margin-bottom: 20px;
+  background-color: white; 
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  min-height: 200px;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.card-front {
+  background-color: #fff;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-back {
+  background-color: #fff;
+  color: #76269B;
+  transform: rotateY(180deg);
+  font-size: 14px;
+  text-align: left;
+  padding: 20px;
+  overflow: auto;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.footer-icons {
+  position: fixed;
+  bottom: 10px;
+  left: 50px;
+  display: flex;
+  gap: 30px;
+  z-index: 999;
+}
+
+.footer-icons a {
+  text-decoration: none; 
+  color: #000; 
+}
+
+.footer-icons img {
+  width: 80px;
+  height: auto;
+}
+
+.love {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}

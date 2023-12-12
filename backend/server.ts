@@ -280,8 +280,8 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
   }
 });
 
-/*
-app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
+
+/*app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
   const username = obtenerNombreDeUsuarioDesdeSesion(req);
   if (username) {
     try {
@@ -303,7 +303,7 @@ app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => 
   } else {
     res.status(401).json({ mensaje: 'Usuario no autenticado' });
   }
-}); */
+});*/
 
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
