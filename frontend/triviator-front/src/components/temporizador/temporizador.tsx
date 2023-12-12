@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 
@@ -29,7 +30,7 @@ const RenderTime: React.FC<TimeProps> = ({ remainingTime }) => {
   if (remainingTime === 0) {
     setTimeout(() => {
       setOneLastRerender((val) => val + 1);
-    }, 20);
+    }, 10);
   }
 
   const isTimeUp = isNewTimeFirstTick.current;
@@ -53,6 +54,10 @@ const RenderTime: React.FC<TimeProps> = ({ remainingTime }) => {
 
 // Componente principal App
 const Temporizador : React.FC = () => {
+  const navigate = useNavigate();
+  const handleTimerComplete = () => {
+    navigate("/winner/");
+  };
   return (
     <div className="App">
       <div className="timer-wrapper">
@@ -63,7 +68,7 @@ const Temporizador : React.FC = () => {
           colorsTime={[10, 6, 3, 0]}
           size={80}
           strokeWidth={7}
-          
+          onComplete={handleTimerComplete}
         >
           {RenderTime}
         </CountdownCircleTimer>
