@@ -11,7 +11,7 @@ const QuestionBox: React.FC<QuestionBoxProps> = ({ question, urlImagen }) => {
     <div className="question-box">
       <div className="question-overlay"></div> {/* Caja transparente con líneas punteadas */}
       <p className="question-text">{question}</p> {/* Letras dentro del .question-box */}
-      {urlImagen && <img src={urlImagen} alt="Imagen de la pregunta" className="question-image" />} {/* Muestra la imagen si hay una URL */}
+      {urlImagen && <div className="image-container"> <img src={urlImagen} alt="Imagen de la pregunta" className="question-image" /> </div>} {/* Muestra la imagen si hay una URL */}
     </div>
   );
 };
