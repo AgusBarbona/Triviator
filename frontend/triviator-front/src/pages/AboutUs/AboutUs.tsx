@@ -44,6 +44,7 @@ const AboutUs: React.FC = () => {
   return (
     <div>
       <Header />
+      <div className='about-page'>
       {loading ? (
         <div className="loading-spinner">
           <div style={{ 
@@ -70,8 +71,8 @@ const AboutUs: React.FC = () => {
             <FlipCard 
               frontContent={<div>Quienes somos</div>}
               backContent={<div>Somos un apasionado equipo de chicas, cineastas de corazón, que decidieron unir  
-                fuerzas y crear este emocionante proyecto: ¡Triviator!
-                Somos un equipo diverso de mentes creativas, cada una aportando su propia chispa única al proyecto. 
+                fuerzas y crear este emocionante proyecto: ¡Triviator!<br/>
+                Este es un equipo diverso de mentes creativas, cada una aportando su propia chispa única al proyecto. 
                 Nos emociona la idea de que, a través de nuestras trivias, puedas descubrir nuevas películas, aprender hechos fascinantes y, sobre todo, disfrutar de la experiencia cinematográfica tanto como nosotras.
               </div>}
             />
@@ -82,7 +83,7 @@ const AboutUs: React.FC = () => {
             />
             <FlipCard 
               frontContent={<div>Unite a nuestro Equipo</div>}
-              backContent={<div>En Triviator, creemos en la magia de las historias que solo el cine puede contar. Queremos que te sumerjas en este mundo y que cada trivia sea un viaje emocionante lleno de sorpresas cinematográficas. ¡Acompáñanos en este viaje y descubre cuánto amor y dedicación hemos puesto en cada pregunta y respuesta!
+              backContent={<div>En Triviator, creemos en la magia de las historias que solo el cine puede contar. Queremos que te sumes a este mundo y que cada trivia sea un viaje emocionante lleno de diversión. ¡Acompañanos en este viaje y descubre cuánto amor y dedicación hemos puesto a este proyecto!
               </div>}
             />
           </div>
@@ -100,6 +101,7 @@ const AboutUs: React.FC = () => {
 </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

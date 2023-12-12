@@ -7,8 +7,8 @@ interface QuestionBoxProps {
 const QuestionBox: React.FC<QuestionBoxProps> = ({ question }) => {
   return (
     <div className="question-box">
-      <div className="question-overlay"></div> {/* Caja transparente con líneas punteadas */}
-      <p className="question-text">{question}</p> {/* Letras dentro del .question-box */}
+      <div className="question-overlay"></div> 
+      <p className="question-text">{question}</p> 
     </div>
   );
 };
