@@ -54,14 +54,13 @@ export const Juego: React.FC<JuegoProps> = () => {
             opcionSeleccionada: opcion,
           }),
         });
-      console.log(response);
+
         const data = await response.json();
-      console.log(data);
+
         if (response.ok) {
           console.log(data.mensaje);
-          if (data.mensaje.includes('incorrecta')) {
-            setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
-            console.log(puntuacion);
+          if (data.mensaje.includes('correcta')) {
+            setPuntuacion((prevPuntuacion) => prevPuntuacion);
           }
         } else {
           console.error(data.mensaje);
