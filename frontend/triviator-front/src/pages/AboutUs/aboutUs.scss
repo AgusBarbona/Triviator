@@ -1,72 +1,119 @@
+@import '../../styles/var';
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap');
+
 body {
-    margin: 0}
+  margin: 0;
+  background-image: url('../../../public/recursos/fondoaboutUs.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Merriweather Sans', sans-serif; 
+}
+
+.welcome {
+  text-align: center;
+  margin-top: 120px;
+  font-style: italic;
+  font-weight: 700;
+}
 
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Creates a responsive grid with a minimum column width of 300px
-    gap: 90px; // Adjust the gap between cards as needed
-    padding: 100px;
-    margin: 0 auto; // Centers the container if needed
-    justify-content: center;
-    max-width: 1200px; // Adjust the max-width as needed to center the grid within the page
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 90px;
+  padding: 100px;
+  margin: 0 auto;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s;
+  margin-bottom: 20px;
+  background-color: white; 
+
+  &:last-child {
+    margin-bottom: 0;
   }
-  
-  .card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: transform 0.6s;
-    margin-bottom: 20px; // Adds space between rows of cards
-  
-    &:last-child {
-      margin-bottom: 0; // Removes the margin from the last row of cards
-    }
-  
-    &:hover {
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    }
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-  
-  .card-inner {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-  }
-  
-  .card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    min-height: 200px; // Set a minimum height for the cards
-    backface-visibility: hidden;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column; // Stack children vertically
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow: hidden; // Prevent content from spilling out
-  }
-  
-  .card-front {
-    background-color: #fff;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .card-back {
-    background-color: #4CAF50; // Use the green color from your design
-    color: white;
-    transform: rotateY(180deg);
-    font-size: 16px;
-    text-align: left;
-    padding: 20px;
-    overflow: auto; // Allow scrolling for overflow content
-  }
-  
-  .card.flipped .card-inner {
-    transform: rotateY(180deg);
-  }
-  
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  min-height: 200px;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.card-front {
+  background-color: #fff;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-back {
+  background-color: #fff;
+  color: #76269B;
+  transform: rotateY(180deg);
+  font-size: 14px;
+  text-align: left;
+  padding: 20px;
+  overflow: auto;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.footer-icons {
+  position: fixed;
+  bottom: 10px;
+  left: 100px;
+  display: flex;
+  gap: 10px;
+  z-index: 999;
+}
+
+.footer-icons a {
+  text-decoration: none; 
+  color: #000; 
+}
+
+.footer-icons img {
+  width: 80px;
+  height: auto;
+}
+
+.love {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
