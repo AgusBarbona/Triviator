@@ -146,6 +146,7 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
         const categoriaId = categorias[0].id_categoria;
         // Obtener una pregunta aleatoria de la categoría seleccionada
         const [preguntas] = yield connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]);
+        console.log(preguntas);
         if (preguntas.length === 0) {
             res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
             return;
@@ -161,7 +162,8 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
         // Barajar las opciones de manera aleatoria
         opciones.sort(() => Math.random() - 0.5);
         connection.release();
-        res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta });
+        console.log('Respuesta del servidor:', { pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
+        res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
     }
     catch (error) {
         console.error('Error al obtener pregunta aleatoria:', error);

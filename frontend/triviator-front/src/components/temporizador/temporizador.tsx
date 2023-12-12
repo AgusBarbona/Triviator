@@ -58,7 +58,7 @@ const Temporizador : React.FC = () => {
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying
-          duration={25}
+          duration={50}
           colors={["#66C15E", "#F7B801", "#A30000", "#A30000"]}
           colorsTime={[10, 6, 3, 0]}
           size={80}
