@@ -1,27 +1,68 @@
 // _juego.scss
 @import '../../styles/var' ;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap');
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Establece un mínimo de altura para asegurarte de que el contenido se ajuste */
+body {
+  min-height: 100%;
+  display: flex;
+  background-image: url('../../../public/recursos/fondojuego.png');
+  flex-direction: column;
+  justify-content: space-between; 
+}
 
 .juego-container {
-    background-color: #9CD9E7;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    height: 100vh; 
-  }
-  
+  width: 100%;
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-size: 100% auto; 
+  background-repeat: repeat-y;
+  padding: 10px; 
+  box-sizing: border-box; 
+}
+
   .question-box {
-    background-color: #D9D9D9;
+    background: radial-gradient(circle, #B01111, #660000);
     padding: 20px;
     height: 200px;
     width: 80%;
+    margin-top: 10%;
     max-width: 650px;
     margin-bottom: 20px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.425);
-  }
+    position: relative;
+    color: white;
+}
+
+.question-text {
+    font-size: 24px;
+}
+
+.question-overlay {
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    right: 10px; 
+    bottom: 10px;
+    background: transparent;
+    border: 2px dashed yellow;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
   
   .options-container {
     display: flex;
@@ -53,7 +94,7 @@
     }
 
     &:hover {
-       
+      
         background-color: #BC7AF9;
         color: #000000;
         transform: translateY(-3px);

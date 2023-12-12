@@ -1,77 +1,57 @@
 @import '../../styles/var';
 
-.avatar-header {
-  background-color: #BC7AF9;
-  color: #FFFFFF;
-  font-weight: bold;
-  font-size: 2.3em;
-  padding: 15px 0;
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
+$color-header-background: #BC7AF9;
+$color-wrapper-background: #C5F4A8;
+$color-text: #FFFFFF;
+$color-input: #76269B;
+$color-button-background: #76269B;
+$color-avatar-border: #76269B;
+$color-avatar-shadow: rgba(0, 0, 0, 0.3);
+$font-size-large: 2.3em;
+$font-size-medium: 1.5em;
+$font-size-small: 1.2rem;
+$avatar-size: 100px;
+$button-border-radius: 5px;
+$avatar-border-radius: 50%;
+$transition-speed: 0.3s;
+
+
 
 .avatar-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #C5F4A8;
+  background: 
+  linear-gradient(to top, rgba(106, 178, 61, 0.5), transparent), /* Cambia #00FF00 al verde que desees */
+  radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#a5d788 68% 70%,#0000 72%) 97px 97px/calc(2*97px) calc(2*97px),
+      radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#a5d788 68% 70%,#0000 72%) 97px 97px/calc(2*97px) calc(2*97px),
+      radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#a5d788 68% 70%,#0000 72%) 0 0/calc(2*97px) calc(2*97px),
+      radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#a5d788 68% 70%,#0000 72%) 0 0/calc(2*97px) calc(2*97px),
+      repeating-conic-gradient(#c5f4a8 0 25%,#0000 0 50%) 0 0/calc(2*97px) calc(2*97px),
+      radial-gradient(#0000 66%,#a5d788 68% 70%,#0000 72%) 0 calc(97px/2)/97px 97px
+      #c5f4a8;
   font-family: $font-family;
   font-weight: bold;
-  min-height: 100vh;
+  min-height: 100vh; /* Establece la altura mínima para abarcar toda la ventana */
   width: 100%;
-  padding-top: 60px; // Compensar la altura del header fijo
+  padding-top: 60px;
   box-sizing: border-box;
+  overflow: hidden; /* Evita desbordamiento */
 }
 
 .avatar-subtitle {
   color: #000000;
-  font-size: 1.5em;
-  margin-top: 70px; 
+  font-size: $font-size-medium;
+  margin-top: 90px;
   text-align: center;
-}
-
-.avatar-content {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  margin-top: 20px;
-  width: 80%;
-  max-width: 500px;
-  box-sizing: border-box;
-}
-
-.avatar-name-input {
-  width: 100%;
-  position: relative;
-  margin-bottom: 20px;
-  
-  input {
-    color: #76269B;
-    font-weight: bold;
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #FFFFFF;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    
-    &:focus {
-      outline: none;
-    }
-  }
 }
 
 .avatar-selection {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  padding: 120px;
+  gap: 20px;
+  padding: 20px;
 }
 
 .avatar-option {
@@ -80,40 +60,44 @@
   flex-direction: column;
   align-items: center;
   margin: 10px;
-  
 
-  
   img {
-    width: 100px; // Ajusta esto según el tamaño deseado de tus avatares
-    height: auto; // Esto mantendrá la relación de aspecto de la imagen
-    border-radius: 50px;
+    width: $avatar-size;
+    height: auto;
+    border-radius: $avatar-border-radius;
+    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px $color-avatar-shadow;
+    }
   }
-  
+
   &.selected {
-    border: 3px solid blue; // Asegúrate de que este color sea visible contra el fondo
-    border-radius: 50px; // Si tus imágenes ya tienen border-radius, el borde también lo seguirá
-    box-sizing: border-box;
+    img {
+      border: 3px solid $color-avatar-border;
+      box-shadow: 0 5px 15px $color-avatar-shadow;
+    }
   }
 }
-
 .popcorn-image {
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
   margin: 6rem 49rem -35rem 2rem;
-  padding: 5rem 2rem 1rem 0rem;
+  padding:12rem 16rem 0rem 0rem;
 }
 
 .ready-button {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: #76269B;
-  color: #FFFFFF;
+  background-color: $color-button-background;
+  color: $color-text;
   border: none;
-  border-radius: 5px;
+  border-radius: $button-border-radius;
   padding: 10px 20px;
-  font-size: 1.5rem;
+  font-size: $font-size-medium;
   cursor: pointer;
   
   &:hover {
-    background-color: darken(#76269B, 10%);
+    background-color: darken($color-button-background, 10%);
   }
 }

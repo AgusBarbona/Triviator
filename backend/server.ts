@@ -8,6 +8,29 @@ import { RowDataPacket } from 'mysql2';
 // Definición de tipo para el payload del token
 interface TokenPayload {
   username: string;
+  avatar: string;
+}
+
+interface AvatarUpdateRequest extends Request {
+  body: {
+    username: string;
+    avatar: string;
+  };
+}
+function verificaToken(req: Request, res: Response, next: Function) {
+  const token = req.headers.authorization?.split(' ')[1] || req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    req.body.username = decoded.username;
+    next();
+  } catch (error) {
+    return res.status(403).json({ mensaje: 'Token no válido' });
+  }
 }
 
 const port: number = parseInt (process.env.PORT || '3000', 10);
@@ -78,25 +101,25 @@ app.post('/api/registro', async (req: Request, res: Response) => {
 });
 
 // middleware para verificar el token
-const verificaToken = (
-  req: Request<any, any, { username?: string }>,
-  res: Response,
-  next: Function
-) => {
-  const token = req.headers.authorization;
+//const verificaToken = (
+  //req: Request<any, any, { username?: string }>,
+  //res: Response,
+  //next: Function
+//) => {
+  //const token = req.headers.authorization;
 
-  if (!token) {
-    return res.status(401).json({ mensaje: 'Token no proporcionado' });
-  }
+  //if (!token) {
+    //return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  //}
 
-  try {
-    const decoded = jwt.verify(token, secretKey) as TokenPayload;
-    req.body = { ...req.body, username: decoded.username };
-    next();
-  } catch (error) {
-    return res.status(403).json({ mensaje: 'Token no válido' });
-  }
-};
+  //try {
+    //const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    //req.body = { ...req.body, username: decoded.username };
+    //next();
+  //} catch (error) {
+    //return res.status(403).json({ mensaje: 'Token no válido' });
+  //}
+//};
 
 
 // nueva ruta para manejar el inicio de sesión
@@ -227,6 +250,53 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error al procesar la respuesta del usuario:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+});
+// Ruta para actualizar el avatar del usuario
+app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Response) => {
+  const { username, avatar } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.execute(
+      'UPDATE users SET avatar = ? WHERE username = ?',
+      [avatar, username]
+    );
+    connection.release();
+
+    if (result && 'affectedRows' in result && result.affectedRows > 0) {
+      res.status(200).json({ mensaje: 'Avatar actualizado correctamente' });
+    } else {
+      res.status(400).json({ mensaje: 'No se pudo actualizar el avatar' });
+    }
+  } catch (error) {
+    console.error('Error al actualizar avatar:', error);
+    res.status(500).json({ mensaje: 'Error interno del servidor' });
+  }
+});
+
+
+app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
+  const username = obtenerNombreDeUsuarioDesdeSesion(req);
+  if (username) {
+    try {
+      const connection = await pool.getConnection();
+      const [rows] = await connection.execute('SELECT username, avatar FROM users WHERE username = ?', [username]);
+
+      if (rows.length > 0) {
+        const user = rows[0];
+        res.json(user);
+      } else {
+        res.status(404).json({ mensaje: 'Usuario no encontrado' });
+      }
+
+      connection.release();
+    } catch (error) {
+      console.error('Error al obtener la información del usuario:', error);
+      res.status(500).json({ mensaje: 'Error interno del servidor' });
+    }
+  } else {
+    res.status(401).json({ mensaje: 'Usuario no autenticado' });
   }
 });
 

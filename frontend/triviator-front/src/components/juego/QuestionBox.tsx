@@ -1,12 +1,16 @@
 import React from 'react';
-import "./_juego.scss";
 
 interface QuestionBoxProps {
-    question: string;
+  question: string;
 }
 
 const QuestionBox: React.FC<QuestionBoxProps> = ({ question }) => {
-    return <div className='question-box'>{question}</div>;
+  return (
+    <div className="question-box">
+      <div className="question-overlay"></div> {/* Caja transparente con líneas punteadas */}
+      <p className="question-text">{question}</p> {/* Letras dentro del .question-box */}
+    </div>
+  );
 };
 
 export default QuestionBox;
