@@ -3,12 +3,12 @@ import { Wheel } from 'react-custom-roulette';
 import "./_ruleta.scss";
 
 const data = [
-  { option: 'Disney' },
-  { option: 'Caricaturas' },
-  { option: 'Cine Argentino' },
-  { option: 'Ficcion' },
-  { option: 'Romance' },
-  { option: 'Marvel' }
+  { id: 1, option: 'Disney' },
+  { id: 2, option: 'Cine Argentino' },
+  { id: 3, option: 'Ficción' },
+  { id: 4, option: 'Marvel' },
+  { id: 5, option: 'Caricaturas' },
+  { id: 6, option: 'Romance' }
 ];
 
 export const Ruleta = () => {
@@ -35,6 +35,8 @@ export const Ruleta = () => {
         outerBorderWidth={2}
         onStopSpinning={() => {
           setMustSpin(false);
+          // Imprimir la categoría seleccionada en la consola
+          console.log("Categoría seleccionada:", data[prizeNumber].option);
         }}
       />
       <button className='boton' onClick={handleSpinClick}>GIRAR</button>
