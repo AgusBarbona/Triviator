@@ -14,15 +14,13 @@ const data = [
 
 export const Ruleta = () => {
   const [mustSpin, setMustSpin] = useState(false);
-  const [prizeNumber, setPrizeNumber] = useState(0);
+  const [prizeNumber] = useState(0);
   const navigate = useNavigate();
 
   const handleSpinClick = () => {
     if (!mustSpin) {
-      const newPrizeNumber = Math.floor(Math.random() * data.length);
-      setPrizeNumber(newPrizeNumber);
       setMustSpin(true);
-    }
+      }
   };
 
   return (
