@@ -1,3 +1,5 @@
+/*
+
 CREATE DATABASE  IF NOT EXISTS `triviator` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `triviator`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
@@ -118,3 +120,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-12-05 11:12:35
+
+*/
