@@ -116,9 +116,7 @@ export const Juego: React.FC<JuegoProps> = () => {
           />
         ))}
       </div>
-      <div className="puntuacion-container">
-        <p>Puntuación: {puntuacion}</p>
-      </div>
+     
     </div>
   );
 };
