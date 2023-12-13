@@ -1,7 +1,68 @@
-# Triviator
-Trivia game bot web app with MySQL, Express, React, and Node.js.
 
-### Screenshots, Figma Design and Jira
+# Triviator 🎬
+
+¡Bienvenido a Triviator, el bot de trivias cinematográficas donde podrás poner a prueba tus conocimientos, aprender de tus errores y, lo más importante, ¡DIVERTIRTE! 🍿🎉
+
+## Tabla de Contenidos
+
+- [Instrucciones de Instalación](#instrucciones-de-instalación)
+  - [Requisitos Previos](#requisitos-previos)
+  - [Clonar el Repositorio](#clonar-el-repositorio)
+  - [Screenshots, Figma y Jira](#screenshots-figma-y-jira)
+- [Funcionalidades Principales](#funcionalidades-principales)
+- [Historias de Usuario de Funcionalidad](#historias-de-usuario-de-funcionalidad)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Autoras](#autoras)
+
+## Instrucciones de Instalación
+
+### Requisitos Previos
+
+Asegúrate de tener instalados los siguientes elementos antes de comenzar:
+
+- [Node.js](https://nodejs.org/): Versión 12 o superior.
+- [npm](https://www.npmjs.com/): Gestor de paquetes para Node.js.
+- [Git](https://git-scm.com/): Sistema de control de versiones.
+  
+### Pasos a seguir: 
+
+### 1. Clonar el Repositorio
+
+Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio:
+
+```bash
+git clone https://github.com/AgusBarbona/Triviator.git
+```
+### 2. Configuración del Frontend
+
+- Accede al directorio:
+
+```bash
+cd frontend/triviator-front
+```
+
+- Instala sus dependencias e inicia:
+  
+```bash
+npm install
+npm run dev
+```
+### 3. Configuración del Backend 
+
+- Accede al directorio:
+
+```bash
+cd backend
+```
+
+- Instala sus dependencias:
+  
+```bash
+npm install 
+```
+e Inicia el servidor! 
+
+### Screenshots, Figma y Jira
 
 ![Desktop View]()
 
@@ -11,12 +72,43 @@ Trivia game bot web app with MySQL, Express, React, and Node.js.
 
 [Jira](https://guada1516.atlassian.net/jira/software/projects/KAN/boards/1)
 
-### Live Site
+## Funcionalidades Principales
 
-- Live Site URL: [Triviator]()
+- 🔒 **Inicio de Sesión:** Guarda tu puntuación al iniciar sesión y compite por ser el mejor.
+
+- 🔄 **Ruleta de Categorías:** Gira la ruleta para seleccionar la categoría de trivia que desees explorar.
+
+- ❓ **Preguntas Aleatorias:** Recibe preguntas aleatorias de la categoría seleccionada y demuestra tus conocimientos cinematográficos.
+  
+
+## Historias de Usuario de Funcionalidad
+
+1. **Iniciar Sesión:** Como usuario, quiero poder iniciar sesión para guardar mi puntuación.
+
+2. **Girar la Ruleta:** Como jugador, quiero poder girar una ruleta para seleccionar la categoría.
+
+3. **Preguntas Aleatorias:** Como participante, quiero recibir preguntas aleatorias de la categoría seleccionada.
+
+5. **Redirección a Resultados:** Como jugador, quiero ser redirigido a la página de resultados al final del juego.
 
 
-## Authors
+## Tecnologías Utilizadas
+
+- React
+- Typescript
+- Node Js
+- Express
+- Vite
+- Sass
+- Dotenv
+- MySQL
+
+
+¡Prepárate para la aventura cinematográfica en Triviator! 🎥✨ ¡Diviértete y que comience la trivia! 🎉
+
+
+
+## Autoras
 
 - Linkedin - [Agustina Barbona](https://www.linkedin.com/in/agustinabarbonag/)
 - Github - [AgusBarbona](https://github.com/AgusBarbona)
