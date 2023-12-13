@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";;
 import "./styles.css";
 
 
@@ -29,7 +29,7 @@ const RenderTime: React.FC<TimeProps> = ({ remainingTime }) => {
   if (remainingTime === 0) {
     setTimeout(() => {
       setOneLastRerender((val) => val + 1);
-    }, 20);
+    }, 10);
   }
 
   const isTimeUp = isNewTimeFirstTick.current;
@@ -53,17 +53,17 @@ const RenderTime: React.FC<TimeProps> = ({ remainingTime }) => {
 
 // Componente principal App
 const Temporizador : React.FC = () => {
+ 
   return (
     <div className="App">
       <div className="timer-wrapper">
         <CountdownCircleTimer
           isPlaying
-          duration={25}
+          duration={50}
           colors={["#66C15E", "#F7B801", "#A30000", "#A30000"]}
           colorsTime={[10, 6, 3, 0]}
           size={80}
           strokeWidth={7}
-          
         >
           {RenderTime}
         </CountdownCircleTimer>

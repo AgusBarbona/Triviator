@@ -167,6 +167,7 @@ interface Pregunta {
   id_pregunta: number;
   id_categoria: number;
   enunciado: string;
+  url_imagen: string; 
   respuesta_correcta: string;
   respuesta_opcional_1: string;
   respuesta_opcional_2: string;
@@ -188,13 +189,15 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 
     // Obtener una pregunta aleatoria de la categoría seleccionada
     const [preguntas] = await connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]) as any;
-
+    console.log(preguntas); 
     if (preguntas.length === 0) {
       res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
       return;
     }
 
     const pregunta = preguntas[0].enunciado;
+
+
 
     // Obtener todas las opciones para la pregunta seleccionada
     const opciones: string[] = [
@@ -209,7 +212,9 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 
     connection.release();
 
-    res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta });
+    console.log('Respuesta del servidor:', { pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
+
+    res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
   } catch (error) {
     console.error('Error al obtener pregunta aleatoria:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
