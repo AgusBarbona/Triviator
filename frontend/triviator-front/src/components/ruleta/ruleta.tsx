@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import "./_ruleta.scss";
+import { useNavigate } from 'react-router-dom';
 
 const data = [
   { id: 1, option: 'Disney' },
@@ -13,14 +14,13 @@ const data = [
 
 export const Ruleta = () => {
   const [mustSpin, setMustSpin] = useState(false);
-  const [prizeNumber, setPrizeNumber] = useState(0);
+  const [prizeNumber] = useState(0);
+  const navigate = useNavigate();
 
   const handleSpinClick = () => {
     if (!mustSpin) {
-      const newPrizeNumber = Math.floor(Math.random() * data.length);
-      setPrizeNumber(newPrizeNumber);
       setMustSpin(true);
-    }
+      }
   };
 
   return (
@@ -37,6 +37,7 @@ export const Ruleta = () => {
           setMustSpin(false);
           // Imprimir la categoría seleccionada en la consola
           console.log("Categoría seleccionada:", data[prizeNumber].option);
+          navigate(`/PaginaJuego/`);
         }}
       />
       <button className='boton' onClick={handleSpinClick}>GIRAR</button>

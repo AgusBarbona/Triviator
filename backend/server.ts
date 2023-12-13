@@ -5,18 +5,18 @@ import cors from 'cors';
 import jwt, { Secret } from 'jsonwebtoken';
 import { RowDataPacket } from 'mysql2';
 
+
+
+/* ----------------------------------          TOKEN              ---------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------- */
+
+
 // Definición de tipo para el payload del token
 interface TokenPayload {
   username: string;
   avatar: string;
 }
 
-interface AvatarUpdateRequest extends Request {
-  body: {
-    username: string;
-    avatar: string;
-  };
-}
 function verificaToken(req: Request, res: Response, next: Function) {
   const token = req.headers.authorization?.split(' ')[1] || req.headers.authorization;
 
@@ -41,12 +41,15 @@ app.use(express.json());
 app.use(cors());
 
 
+/* ----------------------------------------------          RUTAS         ---------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------- */
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello home server!");
 });
 
-// Nueva ruta /api
+
+// NUEVA RUTA /api
 app.get("/api", async (req: Request, res: Response) => {
   try {
     // Obtener una conexión del pool
@@ -62,13 +65,11 @@ app.get("/api", async (req: Request, res: Response) => {
   }
 });
 
-// Nueva ruta /api/v1
-app.get("/api/v1", (req: Request, res: Response) => {
-  res.json({ message: "Hola desde boton" });
-});
+/* ----------------------------------          USUARIOS         ------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
 
-// nueva ruta para el registro de users
 
+// NUEVA RUTA PARA EL REGISTRO DE USUARIOS
 app.post('/api/registro', async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
@@ -85,7 +86,6 @@ app.post('/api/registro', async (req: Request, res: Response) => {
 
     // Insertar el nuevo usuario en la base de datos
     const [result] = await connection.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, password]);
-    
     connection.release();
 
     // Verificar si la inserción fue exitosa
@@ -100,29 +100,6 @@ app.post('/api/registro', async (req: Request, res: Response) => {
   }
 });
 
-// middleware para verificar el token
-//const verificaToken = (
-  //req: Request<any, any, { username?: string }>,
-  //res: Response,
-  //next: Function
-//) => {
-  //const token = req.headers.authorization;
-
-  //if (!token) {
-    //return res.status(401).json({ mensaje: 'Token no proporcionado' });
-  //}
-
-  //try {
-    //const decoded = jwt.verify(token, secretKey) as TokenPayload;
-    //req.body = { ...req.body, username: decoded.username };
-    //next();
-  //} catch (error) {
-    //return res.status(403).json({ mensaje: 'Token no válido' });
-  //}
-//};
-
-
-// nueva ruta para manejar el inicio de sesión
 
 app.post('/api/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -163,32 +140,33 @@ const obtenerNombreDeUsuarioDesdeSesion = (req: Request): string | null => {
   return null;
 };
 
-interface Pregunta {
-  id_pregunta: number;
-  id_categoria: number;
-  enunciado: string;
-  respuesta_correcta: string;
-  respuesta_opcional_1: string;
-  respuesta_opcional_2: string;
-  respuesta_opcional_3: string;
-}
+/* ------------------------          MANEJO DE PREGUNTAS Y RESPUESTAS        ------------------------ */
+/* -------------------------------------------------------------------------------------------------- */
 
-interface Categoria {
-  id_categoria: number;
-}
-
-// Nueva ruta para obtener una pregunta aleatoria
+// NUEVA RUTA PARA OBTENER UNA PREGUNTA ALEATORIA
 app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) => {
   try {
     const connection = await pool.getConnection();
 
     // Obtener una categoría aleatoria
-    const [categorias] = await connection.execute('SELECT * FROM categorias ORDER BY RAND() LIMIT 1') as any;
+    const tuIdEspecifico = 1;
+    const query = 'SELECT * FROM categorias WHERE id_categoria = ?';
+
+    // Obtener una pregunta aleatoria de la categoría seleccionada
+    const [categorias] = await connection.execute(query, [tuIdEspecifico]) as any;
+
+    // Verificar si se encontró la categoría con el ID especificado
+    if (categorias.length === 0) {
+      res.status(404).json({ mensaje: 'No se encontró la categoría con el ID especificado' });
+      return;
+    }
+
     const categoriaId = categorias[0].id_categoria;
 
     // Obtener una pregunta aleatoria de la categoría seleccionada
     const [preguntas] = await connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]) as any;
 
+    // Verificar si se encontraron preguntas para la categoría seleccionada
     if (preguntas.length === 0) {
       res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
       return;
@@ -206,17 +184,20 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
 
     // Barajar las opciones de manera aleatoria
     opciones.sort(() => Math.random() - 0.5);
-
     connection.release();
+    console.log('Respuesta del servidor:', { pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
 
-    res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta });
+    res.status(200).json({ pregunta, opciones, respuestaCorrecta: preguntas[0].respuesta_correcta, urlImagen: preguntas[0].url_imagen });
   } catch (error) {
     console.error('Error al obtener pregunta aleatoria:', error);
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
 
-// Ruta para manejar la respuesta del usuario y registrar la puntuación
+/* ------------------------------          SISTEMA DE PUNTOS         -------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+
+// RUTA PARA MANEJAR LA RESPUESTA DEL USUARIO Y REGISTRAR LA PUNTUACIÓN 
 app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
   const { idPregunta, opcionSeleccionada } = req.body;
 
@@ -252,7 +233,12 @@ app.post('/api/verificar-respuesta', async (req: Request, res: Response) => {
     res.status(500).json({ mensaje: 'Error interno del servidor' });
   }
 });
-// Ruta para actualizar el avatar del usuario
+
+/* ----------------------------------          AVATAR         -------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+
+
+// RUTA PARA ACTUALIZAR EL AVATAR DEL USUARIO
 app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Response) => {
   const { username, avatar } = req.body;
 
@@ -275,6 +261,12 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
   }
 });
 
+interface AvatarUpdateRequest extends Request {
+  body: {
+    username: string;
+    avatar: string;
+  };
+}
 
 /*app.get('/api/user-info', verificaToken, async (req: Request, res: Response) => {
   const username = obtenerNombreDeUsuarioDesdeSesion(req);
@@ -303,3 +295,28 @@ app.post('/api/actualizar-avatar', verificaToken, async (req: Request, res: Resp
 app.listen(port, () => {
   console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
+
+
+// middleware para verificar el token
+//const verificaToken = (
+  //req: Request<any, any, { username?: string }>,
+  //res: Response,
+  //next: Function
+//) => {
+  //const token = req.headers.authorization;
+
+  //if (!token) {
+    //return res.status(401).json({ mensaje: 'Token no proporcionado' });
+  //}
+
+  //try {
+    //const decoded = jwt.verify(token, secretKey) as TokenPayload;
+    //req.body = { ...req.body, username: decoded.username };
+    //next();
+  //} catch (error) {
+    //return res.status(403).json({ mensaje: 'Token no válido' });
+  //}
+//};
+
+
+// nueva ruta para manejar el inicio de sesión
