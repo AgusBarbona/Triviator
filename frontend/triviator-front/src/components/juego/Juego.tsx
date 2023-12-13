@@ -120,7 +120,7 @@ export const Juego: React.FC<JuegoProps> = () => {
 
   return (
     <div className="juego-container">
-      <QuestionBox question={pregunta} />
+    
       <button className= "music" onClick={handleClick}>{isPlaying ? (<img className="play" src= "../../../public/icono/play.png"/>) : (<img className="pause" src= "../../../public/icono/pausa.png"/>)}</button>
       
       <QuestionBox question={pregunta} urlImagen={urlImagen} />
