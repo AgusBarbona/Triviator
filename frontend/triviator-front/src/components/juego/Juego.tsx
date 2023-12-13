@@ -2,6 +2,9 @@ import "./_juego.scss";
 import QuestionBox from "./QuestionBox";
 import OptionBox from "./OptionBox";
 import { useEffect, useState } from "react";
+import useSound from 'use-sound';
+import Track from "../../../public/track.mp3";
+
 
 
 interface JuegoProps {}
@@ -80,9 +83,24 @@ export const Juego: React.FC<JuegoProps> = () => {
     fetchData();
   }, [preguntasRespondidas]);
 
+
+  const [play, { stop }] = useSound(Track);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handleClick = () => {
+    if (isPlaying) {
+      stop();
+    } else {
+      play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+
   return (
     <div className="juego-container">
       <QuestionBox question={pregunta} />
+      <button className= "music" onClick={handleClick}>{isPlaying ? (<img className="play" src= "../../../public/icono/play.png"/>) : (<img className="pause" src= "../../../public/icono/pausa.png"/>)}</button>
       <div className="options-container">
         {opciones.map((opcion, index) => (
           <OptionBox
