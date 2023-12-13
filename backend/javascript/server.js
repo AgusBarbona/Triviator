@@ -36,6 +36,8 @@ const port = parseInt(process.env.PORT || '3000', 10);
 const secretKey = 'triviatorProyecto2023';
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
+/* ----------------------------------------------          RUTAS         ---------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------- */
 app.get("/", (req, res) => {
     res.send("Hello home server!");
 });
