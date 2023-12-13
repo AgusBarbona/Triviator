@@ -184,20 +184,30 @@ app.get('/api/obtener-pregunta-aleatoria', async (req: Request, res: Response) =
     const connection = await pool.getConnection();
 
     // Obtener una categoría aleatoria
-    const [categorias] = await connection.execute('SELECT * FROM categorias ORDER BY RAND() LIMIT 1') as any;
+    const tuIdEspecifico = 1;
+    const query = 'SELECT * FROM categorias WHERE id_categoria = ?';
+
+    // Obtener una pregunta aleatoria de la categoría seleccionada
+    const [categorias] = await connection.execute(query, [tuIdEspecifico]) as any;
+
+    // Verificar si se encontró la categoría con el ID especificado
+    if (categorias.length === 0) {
+      res.status(404).json({ mensaje: 'No se encontró la categoría con el ID especificado' });
+      return;
+    }
+
     const categoriaId = categorias[0].id_categoria;
 
     // Obtener una pregunta aleatoria de la categoría seleccionada
     const [preguntas] = await connection.execute('SELECT * FROM preguntas WHERE id_categoria = ? ORDER BY RAND() LIMIT 1', [categoriaId]) as any;
-    console.log(preguntas); 
+
+    // Verificar si se encontraron preguntas para la categoría seleccionada
     if (preguntas.length === 0) {
       res.status(404).json({ mensaje: 'No se encontraron preguntas para la categoría seleccionada' });
       return;
     }
 
     const pregunta = preguntas[0].enunciado;
-
-
 
     // Obtener todas las opciones para la pregunta seleccionada
     const opciones: string[] = [
