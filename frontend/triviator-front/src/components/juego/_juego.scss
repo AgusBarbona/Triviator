@@ -128,4 +128,31 @@ body {
         transform: translateY(-3px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   }
-} 
+}
+
+
+.play{
+  width: 40px;
+  height: 40px;
+  padding-left: 91%;
+  padding-right: -6%;
+  padding-top: 3%;
+  padding-bottom: 1%;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+.pause{
+  width: 40px;
+  height: 40px;
+  padding-left: 91%;
+  padding-right: -6%;
+  padding-top: 3%;
+  padding-bottom: 1%;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+
