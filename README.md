@@ -7,8 +7,8 @@
 
 - [Instrucciones de Instalación](#instrucciones-de-instalación)
   - [Requisitos Previos](#requisitos-previos)
-  - [Clonar el Repositorio](#clonar-el-repositorio)
-  - [Screenshots, Figma y Jira](#screenshots-figma-y-jira)
+  - [Pasos a seguir](#pasos-a-seguir)
+- [Screenshots, Figma y Jira](#screenshots-figma-y-jira)
 - [Funcionalidades Principales](#funcionalidades-principales)
 - [Historias de Usuario de Funcionalidad](#historias-de-usuario-de-funcionalidad)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
@@ -104,7 +104,7 @@ e Inicia el servidor!
 - MySQL
 
 
-¡Prepárate para la aventura cinematográfica en Triviator! 🎥✨ ¡Diviértete y que comience la trivia! 🎉
+¡Prepárate para la aventura cinematográfica en Triviator! 🎥✨ ¡Divertite y comenza a jugar! 🎉
 
 
 
