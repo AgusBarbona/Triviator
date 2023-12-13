@@ -39,7 +39,7 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("Hello home server!");
 });
-// Nueva ruta /api
+// NUEVA RUTA /api
 app.get("/api", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Obtener una conexión del pool
@@ -53,11 +53,9 @@ app.get("/api", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).json({ error: 'Error al conectar a la base de datos', details: error.message });
     }
 }));
-// Nueva ruta /api/v1
-app.get("/api/v1", (req, res) => {
-    res.json({ message: "Hola desde boton" });
-});
-// nueva ruta para el registro de users
+/* ----------------------------------          USUARIOS         ------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+// NUEVA RUTA PARA EL REGISTRO DE USUARIOS
 app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, password } = req.body;
     try {
@@ -85,25 +83,6 @@ app.post('/api/registro', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
-// middleware para verificar el token
-//const verificaToken = (
-//req: Request<any, any, { username?: string }>,
-//res: Response,
-//next: Function
-//) => {
-//const token = req.headers.authorization;
-//if (!token) {
-//return res.status(401).json({ mensaje: 'Token no proporcionado' });
-//}
-//try {
-//const decoded = jwt.verify(token, secretKey) as TokenPayload;
-//req.body = { ...req.body, username: decoded.username };
-//next();
-//} catch (error) {
-//return res.status(403).json({ mensaje: 'Token no válido' });
-//}
-//};
-// nueva ruta para manejar el inicio de sesión
 app.post('/api/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     console.log('Intento de inicio de sesión para el usuario:', username);
@@ -137,7 +116,9 @@ const obtenerNombreDeUsuarioDesdeSesion = (req) => {
     }
     return null;
 };
-// Nueva ruta para obtener una pregunta aleatoria
+/* ------------------------          MANEJO DE PREGUNTAS Y RESPUESTAS        ------------------------ */
+/* -------------------------------------------------------------------------------------------------- */
+// NUEVA RUTA PARA OBTENER UNA PREGUNTA ALEATORIA
 app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const connection = yield db_1.pool.getConnection();
@@ -178,7 +159,9 @@ app.get('/api/obtener-pregunta-aleatoria', (req, res) => __awaiter(void 0, void 
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
-// Ruta para manejar la respuesta del usuario y registrar la puntuación
+/* ------------------------------          SISTEMA DE PUNTOS         -------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+// RUTA PARA MANEJAR LA RESPUESTA DEL USUARIO Y REGISTRAR LA PUNTUACIÓN 
 app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { idPregunta, opcionSeleccionada } = req.body;
@@ -205,7 +188,9 @@ app.post('/api/verificar-respuesta', (req, res) => __awaiter(void 0, void 0, voi
         res.status(500).json({ mensaje: 'Error interno del servidor' });
     }
 }));
-// Ruta para actualizar el avatar del usuario
+/* ----------------------------------          AVATAR         -------------------------------------- */
+/* -------------------------------------------------------------------------------------------------- */
+// RUTA PARA ACTUALIZAR EL AVATAR DEL USUARIO
 app.post('/api/actualizar-avatar', verificaToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, avatar } = req.body;
     try {
@@ -250,3 +235,22 @@ app.post('/api/actualizar-avatar', verificaToken, (req, res) => __awaiter(void 0
 app.listen(port, () => {
     console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
+// middleware para verificar el token
+//const verificaToken = (
+//req: Request<any, any, { username?: string }>,
+//res: Response,
+//next: Function
+//) => {
+//const token = req.headers.authorization;
+//if (!token) {
+//return res.status(401).json({ mensaje: 'Token no proporcionado' });
+//}
+//try {
+//const decoded = jwt.verify(token, secretKey) as TokenPayload;
+//req.body = { ...req.body, username: decoded.username };
+//next();
+//} catch (error) {
+//return res.status(403).json({ mensaje: 'Token no válido' });
+//}
+//};
+// nueva ruta para manejar el inicio de sesión
