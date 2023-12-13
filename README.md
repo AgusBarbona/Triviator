@@ -85,11 +85,11 @@ e Inicia el servidor!
 
 1. **Iniciar Sesión:** Como usuario, quiero poder iniciar sesión para guardar mi puntuación.
 
-2. **Girar la Ruleta:** Como jugador, quiero poder girar una ruleta para seleccionar la categoría.
+2. **Girar la Ruleta:** Como usuario, quiero poder girar una ruleta para seleccionar la categoría.
 
-3. **Preguntas Aleatorias:** Como participante, quiero recibir preguntas aleatorias de la categoría seleccionada.
+3. **Preguntas Aleatorias:** Como usuario, quiero recibir preguntas aleatorias de la categoría seleccionada.
 
-5. **Redirección a Resultados:** Como jugador, quiero ser redirigido a la página de resultados al final del juego.
+5. **Redirección a Resultados:** Como usuario, quiero ser redirigido a la página de resultados al final del juego.
 
 
 ## Tecnologías Utilizadas
