@@ -62,15 +62,14 @@ npm install
 ```
 e Inicia el servidor! 
 
-### Screenshots, Figma y Jira
 
-![Desktop View]()
 
-![Mobile View]()
+![Desktop View](./recursos/icono/mockup.png)
 
-[Figma File](https://www.figma.com/file/xggqxThDKZwuM4TwSrZNCs/triviator?type=design&node-id=0%3A1&mode=design&t=f7WNet49rf0JT18P-1)
 
-[Jira](https://guada1516.atlassian.net/jira/software/projects/KAN/boards/1)
+[![Figma Icon](./recursos/icono/figma.png)](https://www.figma.com/file/xggqxThDKZwuM4TwSrZNCs/triviator?type=design&node-id=0%3A1&mode=design&t=f7WNet49rf0JT18P-1)
+
+[![Jira Icon](./recursos/icono/icons8-existir-96.png)](https://guada1516.atlassian.net/jira/software/projects/KAN/boards/1)
 
 ## Funcionalidades Principales
 
